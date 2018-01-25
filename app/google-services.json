@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "274187320346",
+    "firebase_url": "https://gluco-b9967.firebaseio.com",
+    "project_id": "gluco-b9967",
+    "storage_bucket": "gluco-b9967.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274187320346:android:d6ff01749d7aa008",
+        "android_client_info": {
+          "package_name": "com.projectx.gluco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274187320346-odks9i0hpoeahf5rijp9im5mt4f5nnkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.projectx.gluco",
+            "certificate_hash": "89e62ccf831010c768c1494e24dd0ef16e2c16b5"
+          }
+        },
+        {
+          "client_id": "274187320346-0925hq2jsnhdb71v846v25b3svdqi5ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoUtSHr67vbaNW_wY2-xZ7zZTuv5KfyKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274187320346-0925hq2jsnhdb71v846v25b3svdqi5ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
