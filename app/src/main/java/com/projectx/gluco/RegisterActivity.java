@@ -20,10 +20,8 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        uEmail = (EditText) findViewById(R.id.uEmail);
-        uPass = (EditText) findViewById(R.id.uPass);
-        uBtn = (Button) findViewById(R.id.uBtn);
+        setContentView(R.layout.activity_signup);
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

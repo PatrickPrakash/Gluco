@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".activity_main" android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>
