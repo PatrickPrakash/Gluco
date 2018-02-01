@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".RegisterMailActivity" android:exported="true" />
         <activity android:name=".activity_main" android:exported="true">
 
         </activity>
