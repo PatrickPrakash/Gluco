@@ -16,10 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterMailActivity" android:exported="true" />
-        <activity android:name=".MainActivity" android:exported="true">
-
-        </activity>
+        <activity
+            android:name=".RegisterMailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"></activity>
+        <activity android:name=".MainAuthActivity"></activity>
     </application>
 
 </manifest>
