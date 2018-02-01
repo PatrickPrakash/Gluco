@@ -8,7 +8,7 @@
     android:background="@drawable/background">
 
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/editText2"
+        android:id="@+id/uPass"
         android:layout_width="330dp"
         android:layout_height="71dp"
         android:layout_marginEnd="8dp"
@@ -22,11 +22,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/uEmail"
         app:met_floatingLabel="highlight" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/editText3"
+        android:id="@+id/uEmail"
         android:layout_width="330dp"
         android:layout_height="71dp"
         android:layout_marginEnd="8dp"
@@ -43,7 +43,7 @@
         app:met_floatingLabel="highlight" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/uSignup"
         style="@android:style/Widget.Material.Button.Colored"
         android:layout_width="134dp"
         android:layout_height="52dp"
@@ -57,11 +57,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/uPass"
         app:layout_constraintVertical_bias="0.108" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Signuptext"
         android:layout_width="111dp"
         android:layout_height="33dp"
         android:layout_marginEnd="8dp"
