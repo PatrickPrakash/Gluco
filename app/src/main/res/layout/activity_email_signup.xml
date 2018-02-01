@@ -18,11 +18,12 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        app:met_floatingLabel="highlight"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:met_floatingLabel="highlight" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/editText3"
@@ -35,10 +36,11 @@
         android:hint="Email Address"
         android:inputType="textEmailAddress"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        app:met_floatingLabel="highlight"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:met_floatingLabel="highlight" />
 
     <Button
         android:id="@+id/button2"
@@ -57,5 +59,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
         app:layout_constraintVertical_bias="0.108" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="111dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:text="Sign Up"
+        android:textAllCaps="true"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

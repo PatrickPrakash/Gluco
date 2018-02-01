@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.projectx.gluco.activity_main">
+    tools:context="com.projectx.gluco.MainActivity">
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"

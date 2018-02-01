@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterMailActivity" android:exported="true" />
-        <activity android:name=".activity_main" android:exported="true">
+        <activity android:name=".MainActivity" android:exported="true">
 
         </activity>
     </application>
