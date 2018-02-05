@@ -4,25 +4,31 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" android:exported="true">
+        </activity>
+        <activity
+            android:name=".RegisterMailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ConsoleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainAuthActivity"
+            android:exported="true" />
+        <activity android:name=".SplashActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".RegisterMailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
-        <activity android:name=".MainAuthActivity"></activity>
     </application>
 
 </manifest>
