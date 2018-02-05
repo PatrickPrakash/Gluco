@@ -5,12 +5,12 @@
     android:id="@+id/Constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/back1">
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uPass"
         android:layout_width="330dp"
-        android:layout_height="71dp"
+        android:layout_height="52dp"
         android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Password"
@@ -28,7 +28,7 @@
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uEmail"
         android:layout_width="330dp"
-        android:layout_height="71dp"
+        android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="160dp"
@@ -45,20 +45,17 @@
     <Button
         android:id="@+id/uSignup"
         style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="134dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="118dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="84dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Sign Up"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uPass"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Signuptext"
@@ -73,5 +70,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/editText"
+        android:layout_width="330dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:inputType="textPersonName"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uPass"
+        app:met_floatingLabel="highlight"/>
 
 </android.support.constraint.ConstraintLayout>
