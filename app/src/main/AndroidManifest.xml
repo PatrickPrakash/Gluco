@@ -4,23 +4,23 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/anlogo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/anlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity" android:exported="true">
+        <activity android:name=".Authentication.LoginActivity" android:exported="true">
         </activity>
         <activity
-            android:name=".RegisterMailActivity"
+            android:name=".Authentication.RegisterMailActivity"
             android:exported="true" />
         <activity
             android:name=".ConsoleActivity"
             android:exported="true" />
         <activity
-            android:name=".MainAuthActivity"
+            android:name=".Authentication.MainAuthActivity"
             android:exported="true" />
         <activity android:name=".SplashActivity" android:exported="true">
             <intent-filter>

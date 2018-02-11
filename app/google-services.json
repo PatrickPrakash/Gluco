@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "274187320346-09ol0busiveu08nmh1envl5futfpaclq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.projectx.gluco",
+            "certificate_hash": "8000ab1804a1de5599cb882bda73002d8f4e2836"
+          }
+        },
+        {
           "client_id": "274187320346-odks9i0hpoeahf5rijp9im5mt4f5nnkd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

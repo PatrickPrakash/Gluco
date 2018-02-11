@@ -2,7 +2,7 @@ package com.projectx.gluco;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+//import com.projectx.gluco.Authentication.GoogleActivity;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;

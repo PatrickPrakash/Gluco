@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/running"
-    tools:context="com.projectx.gluco.MainAuthActivity">
+    tools:context="com.projectx.gluco.Authentication.MainAuthActivity">
 
     <Button
         android:id="@+id/email_btn"
@@ -14,6 +14,8 @@
         android:layout_height="53dp"
         android:layout_marginTop="400dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:cursorVisible="false"
+        android:elevation="0dp"
         android:stateListAnimator="@null"
         android:text="Sign in with Email"
         android:textAlignment="center"
@@ -23,7 +25,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" tools:targetApi="m"/>
 
     <Button
         android:id="@+id/google_btn"
@@ -32,20 +34,21 @@
         android:layout_height="53dp"
         android:layout_marginTop="48dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:elevation="0dp"
         android:stateListAnimator="@null"
-        android:text="  Sign in with Google"
+        android:text="Sign in with Google"
         android:textAllCaps="false"
         android:textAppearance="@android:style/TextAppearance.Material.Button"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/email_btn" tools:targetApi="m"/>
 
     <ImageView
         android:id="@+id/Googlelogo"
         android:layout_width="31dp"
         android:layout_height="30dp"
-        android:layout_marginStart="77dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="59dp"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
@@ -59,7 +62,7 @@
         android:id="@+id/Emaillogo"
         android:layout_width="53dp"
         android:layout_height="42dp"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="67dp"
         android:layout_marginTop="403dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,9 +84,10 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="280dp"
-        android:layout_height="81dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="319dp"
+        android:layout_height="90dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

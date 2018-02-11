@@ -5,7 +5,7 @@
     android:id="@+id/Constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/back1">
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uPass"
@@ -23,7 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uEmail"
-        app:met_floatingLabel="highlight" />
+        app:met_floatingLabel="highlight" tools:targetApi="lollipop"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uEmail"
@@ -40,17 +40,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:met_floatingLabel="highlight" />
+        app:met_floatingLabel="highlight" tools:targetApi="lollipop"/>
 
     <Button
         android:id="@+id/uSignup"
         style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="134dp"
-        android:layout_height="52dp"
+        android:layout_width="118dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:background="@color/colorPrimaryDark"
         android:text="Login"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uPass"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.108" tools:targetApi="n"/>
 
     <TextView
         android:id="@+id/Signuptext"
@@ -74,17 +75,28 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" tools:targetApi="lollipop"/>
 
     <TextView
         android:id="@+id/createacc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_height="22dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="60dp"
         android:text="New to Gluco? Sign Up"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uSignup" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
+        android:text="Forgot password?"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uSignup" />
 
 </android.support.constraint.ConstraintLayout>
