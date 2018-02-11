@@ -47,7 +47,7 @@ public class MainAuthActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() !=null)
                 {
-                    startActivity(new Intent(MainAuthActivity.this, ConsoleActivity.class));
+                    //startActivity(new Intent(MainAuthActivity.this, ConsoleActivity.class));
                 }
 
             }
@@ -68,14 +68,14 @@ public class MainAuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+     //   mAuth.addAuthStateListener(mAuthListener);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mAuth.removeAuthStateListener(mAuthListener);
+       // mAuth.removeAuthStateListener(mAuthListener);
     }
 
     private void signIn() {
