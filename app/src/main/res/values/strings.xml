@@ -9,4 +9,8 @@
     <string name="login">Login</string>
     <string name="email_id">Email ID</string>
     <string name="sign_up">Sign Up</string>
+    <string name="nav_home">home</string>
+    <string name="nav_list">list</string>
+    <string name="nav_fire">fire</string>
+    <string name="nav_person">person</string>
 </resources>

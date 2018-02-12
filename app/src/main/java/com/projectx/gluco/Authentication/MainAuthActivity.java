@@ -32,6 +32,13 @@ public class MainAuthActivity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 1;
     private static final String TAG = "GoogleActivity";
     FirebaseAuth.AuthStateListener mAuthListener;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +54,7 @@ public class MainAuthActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() !=null)
                 {
-                    //startActivity(new Intent(MainAuthActivity.this, ConsoleActivity.class));
+                    startActivity(new Intent(MainAuthActivity.this, ConsoleActivity.class));
                 }
 
             }
@@ -68,14 +75,14 @@ public class MainAuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-     //   mAuth.addAuthStateListener(mAuthListener);
+       // mAuth.addAuthStateListener(mAuthListener);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-       // mAuth.removeAuthStateListener(mAuthListener);
+      //  mAuth.removeAuthStateListener(mAuthListener);
     }
 
     private void signIn() {

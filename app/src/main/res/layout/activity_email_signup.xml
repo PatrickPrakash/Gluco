@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Constraintlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/back1">
+    android:layout_height="match_parent">
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uPass"
@@ -23,7 +22,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uEmail"
-        app:met_floatingLabel="highlight" tools:targetApi="lollipop"/>
+        app:met_floatingLabel="highlight"
+        tools:targetApi="lollipop" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uEmail"
@@ -40,7 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:met_floatingLabel="highlight" tools:targetApi="lollipop"/>
+        app:met_floatingLabel="highlight"
+        tools:targetApi="lollipop" />
 
     <Button
         android:id="@+id/uSignup"
@@ -55,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" tools:targetApi="n"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="n" />
 
     <TextView
         android:id="@+id/Signuptext"
@@ -69,7 +71,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" tools:targetApi="lollipop"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/uCPass"
@@ -87,6 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uPass"
-        app:met_floatingLabel="highlight" tools:targetApi="lollipop"/>
+        app:met_floatingLabel="highlight"
+        tools:targetApi="lollipop" />
 
 </android.support.constraint.ConstraintLayout>

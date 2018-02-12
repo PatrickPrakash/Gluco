@@ -40,7 +40,7 @@ public class ConsoleActivity extends AppCompatActivity {
         graph.addSeries(series);
     }
 
-
+    //Popup prompt
     private void doExit() {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(
@@ -50,7 +50,7 @@ public class ConsoleActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
+                finishAffinity();//To destroy all activity
             }
         });
 
