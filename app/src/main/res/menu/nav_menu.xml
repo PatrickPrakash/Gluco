@@ -12,6 +12,9 @@
         android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/log" />
     <item
+        android:id="@+id/nav_plus"
+        android:icon="@drawable/ic_add_circle_black_48dp" />
+    <item
         android:id="@+id/nav_activity"
         android:icon="@drawable/ic_whatshot_black_24dp"
         android:title="@string/activity" />

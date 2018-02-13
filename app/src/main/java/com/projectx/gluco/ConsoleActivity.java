@@ -2,6 +2,7 @@ package com.projectx.gluco;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.projectx.gluco.Fragments.AboutFragment;
@@ -32,7 +34,7 @@ public class ConsoleActivity extends AppCompatActivity {
         private ActivityFragment activityFragment;
         private HomeFragment homeFragment;
         private LogFragment logFragment;
-
+        private BottomNavigationItemView plus;
     //When back button is pressed.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -54,7 +56,7 @@ public class ConsoleActivity extends AppCompatActivity {
         //View Declarations
         bottom_navigation = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.framelayout);
-
+        plus = findViewById(R.id.nav_plus);
         //Fragment Objects
         homeFragment = new HomeFragment();
         logFragment = new LogFragment();
@@ -76,6 +78,8 @@ public class ConsoleActivity extends AppCompatActivity {
                     case R.id.nav_log :
                         setFragment(logFragment);
                         return true;
+                    case R.id.nav_plus :
+
 
                     case R.id.nav_activity :
                         setFragment(activityFragment);
