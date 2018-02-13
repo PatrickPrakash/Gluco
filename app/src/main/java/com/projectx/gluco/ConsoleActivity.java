@@ -3,18 +3,37 @@ package com.projectx.gluco;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import com.projectx.gluco.Fragments.AboutFragment;
+import com.projectx.gluco.Fragments.ActivityFragment;
+import com.projectx.gluco.Fragments.HomeFragment;
+import com.projectx.gluco.Fragments.LogFragment;
+
 import java.lang.reflect.Field;
 
 public class ConsoleActivity extends AppCompatActivity {
 
+        //View Intialisations
         private BottomNavigationView bottom_navigation;
+        private FrameLayout frameLayout;
+        private AboutFragment aboutFragment;
+        private ActivityFragment activityFragment;
+        private HomeFragment homeFragment;
+        private LogFragment logFragment;
+
+    //When back button is pressed.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
@@ -26,13 +45,51 @@ public class ConsoleActivity extends AppCompatActivity {
 
     }
 
+    //onCreate Function
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_console);
 
+        //View Declarations
         bottom_navigation = findViewById(R.id.bottom_navigation);
-        disableShiftMode(bottom_navigation);
+        frameLayout = findViewById(R.id.framelayout);
+
+        //Fragment Objects
+        homeFragment = new HomeFragment();
+        logFragment = new LogFragment();
+        aboutFragment = new AboutFragment();
+        activityFragment = new ActivityFragment();
+        DefaultFragment(homeFragment); //Sets Home as Default Fragment
+        disableShiftMode(bottom_navigation);//Disable shift mode function
+
+        bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.nav_home :
+                        setFragment(homeFragment);
+                        return true;
+
+                    case R.id.nav_log :
+                        setFragment(logFragment);
+                        return true;
+
+                    case R.id.nav_activity :
+                        setFragment(activityFragment);
+                        return true;
+
+                    case R.id.nav_about :
+                        setFragment(aboutFragment);
+                        return true;
+
+                    default :
+                        return false;
+                }
+            }
+        });
     }
 
     //Popup prompt
@@ -45,7 +102,7 @@ public class ConsoleActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();//To destroy all activites
+                finishAffinity();//To destroy all the activities
             }
         });
 
@@ -56,7 +113,7 @@ public class ConsoleActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    //To Disable Shifting mode
+    //To Disable Shifting mode in the bottom navigation view
     @SuppressLint("RestrictedApi")
     private void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
@@ -78,4 +135,17 @@ public class ConsoleActivity extends AppCompatActivity {
         }
     }
 
+    //Set Fragment on Frame layout
+    private void setFragment(Fragment fragment)
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.commit();
+    }
+    private void DefaultFragment(Fragment fragment)
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.commit();
+    }
 }
