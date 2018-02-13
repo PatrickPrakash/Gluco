@@ -16,3 +16,7 @@ Features:
 * Get Diet Tips
 
 * Export your Logged values to CSV file
+
+![alt text](https://raw.githubusercontent.com/patrickprakash/Gluco/master/app/githubpics/screen1.jpg)
+
+![alt text](https://raw.githubusercontent.com/patrickprakash/Gluco/master/app/githubpics/screen2.jpg)
