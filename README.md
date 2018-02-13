@@ -5,14 +5,14 @@ Gluco is a Open -Source Diabetes Management System.
 
 Features:
 
-Material Design
+* Material Design
 
-Track Blood glucose level,Blood Pressure,Body Weight
+* Track Blood glucose level,Blood Pressure,Body Weight
 
-Get a Detailed graph overview of your diabetes.
+* Get a Detailed graph overview of your diabetes.
 
-Track your Activity
+* Track your Activity
 
-Get Diet Tips
+* Get Diet Tips
 
-Export your Logged values to CSV file
+* Export your Logged values to CSV file
