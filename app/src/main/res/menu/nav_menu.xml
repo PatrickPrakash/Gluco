@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu
     xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <item
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/nav_home" />
+        android:title="@string/home" />
     <item
         android:icon="@drawable/ic_list_black_24dp"
-        android:title="@string/nav_list" />
+        android:title="@string/log" />
     <item
         android:icon="@drawable/ic_whatshot_black_24dp"
-        android:title="@string/nav_fire" />
+        android:title="@string/activity" />
     <item
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/nav_person" />
+        android:title="@string/about" />
 </menu>

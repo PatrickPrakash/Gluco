@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Gluco</string>
-    <string name="ok">Ok</string>
+    <string name="ok">ok</string>
     <string name="age">Age</string>
     <string name="username">Username</string>
     <string name="name">Name</string>
@@ -9,8 +9,12 @@
     <string name="login">Login</string>
     <string name="email_id">Email ID</string>
     <string name="sign_up">Sign Up</string>
-    <string name="nav_home">home</string>
-    <string name="nav_list">list</string>
-    <string name="nav_fire">fire</string>
-    <string name="nav_person">person</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_list">Log</string>
+    <string name="nav_person">Me</string>
+    <string name="nav_fire">DIet</string>
+    <string name="home">Home</string>
+    <string name="log">Log</string>
+    <string name="about">About</string>
+    <string name="activity">Activity</string>
 </resources>
