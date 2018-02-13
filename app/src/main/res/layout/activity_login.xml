@@ -44,7 +44,7 @@
         tools:targetApi="lollipop" />
 
     <Button
-        android:id="@+id/uSignup"
+        android:id="@+id/uSignin"
         style="@android:style/Widget.Material.Button.Colored"
         android:layout_width="118dp"
         android:layout_height="40dp"
@@ -81,7 +81,7 @@
         tools:targetApi="lollipop" />
 
     <TextView
-        android:id="@+id/createacc"
+        android:id="@+id/uSignup"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
         android:layout_marginRight="24dp"
@@ -89,7 +89,7 @@
         android:text="New to Gluco? Sign Up"
         android:textSize="15sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/uSignin" />
 
     <TextView
         android:id="@+id/textView2"
@@ -100,6 +100,6 @@
         android:text="Forgot password?"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/uSignin" />
 
 </android.support.constraint.ConstraintLayout>

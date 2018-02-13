@@ -44,7 +44,7 @@
         tools:targetApi="lollipop" />
 
     <Button
-        android:id="@+id/uSignup"
+        android:id="@+id/uSignin"
         style="@android:style/Widget.Material.Button.Colored"
         android:layout_width="118dp"
         android:layout_height="40dp"
