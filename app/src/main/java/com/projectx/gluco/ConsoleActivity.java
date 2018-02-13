@@ -1,5 +1,6 @@
 package com.projectx.gluco;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
@@ -56,6 +57,7 @@ public class ConsoleActivity extends AppCompatActivity {
     }
 
     //To Disable Shifting mode
+    @SuppressLint("RestrictedApi")
     private void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
