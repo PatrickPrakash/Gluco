@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.projectx.gluco.ConsoleActivity;
+import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
 
 public class MainAuthActivity extends AppCompatActivity {

@@ -1,8 +1,7 @@
-package com.projectx.gluco;
+package com.projectx.gluco.MainActivities;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -15,13 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.projectx.gluco.Fragments.AboutFragment;
 import com.projectx.gluco.Fragments.ActivityFragment;
 import com.projectx.gluco.Fragments.HomeFragment;
 import com.projectx.gluco.Fragments.LogFragment;
+import com.projectx.gluco.R;
 
 import java.lang.reflect.Field;
 
@@ -35,6 +35,12 @@ public class ConsoleActivity extends AppCompatActivity {
         private HomeFragment homeFragment;
         private LogFragment logFragment;
         private BottomNavigationItemView plus;
+        private BottomNavigationItemView homeicon;
+        private BottomNavigationItemView logicon;
+        private BottomNavigationItemView activityicon;
+        private BottomNavigationItemView abouticon;
+      //  private LinearLayout bottomSheetlayout;
+       // private BottomSheetBehavior bottomSheetBehavior;
     //When back button is pressed.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -48,12 +54,15 @@ public class ConsoleActivity extends AppCompatActivity {
     }
 
     //onCreate Function
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_console);
 
         //View Declarations
+       // bottomSheetlayout  = findViewById(R.layout.bottom_sheet);
+       // bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetlayout);
         bottom_navigation = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.framelayout);
         plus = findViewById(R.id.nav_plus);
@@ -62,9 +71,22 @@ public class ConsoleActivity extends AppCompatActivity {
         logFragment = new LogFragment();
         aboutFragment = new AboutFragment();
         activityFragment = new ActivityFragment();
+        //Bottomnavigationbaricons
+        homeicon = findViewById(R.id.nav_home);
+        plus = findViewById(R.id.nav_plus);
+        logicon = findViewById(R.id.nav_log);
+        activityicon = findViewById(R.id.nav_activity);
+        abouticon = findViewById(R.id.nav_about);
         DefaultFragment(homeFragment); //Sets Home as Default Fragment
         disableShiftMode(bottom_navigation);//Disable shift mode function
-
+        //OnClickListeners
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheet bottomSheetDialog = new BottomSheet();
+                bottomSheetDialog.show(getSupportFragmentManager(),bottomSheetDialog.getTag());
+            }
+        });
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

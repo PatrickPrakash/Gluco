@@ -11,24 +11,28 @@
         android:roundIcon="@mipmap/anlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Authentication.LoginActivity" android:exported="true">
-        </activity>
+        <activity
+            android:name=".Authentication.LoginActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".Authentication.RegisterMailActivity"
             android:exported="true" />
         <activity
-            android:name=".ConsoleActivity"
+            android:name=".MainActivities.ConsoleActivity"
             android:exported="true" />
         <activity
             android:name=".Authentication.MainAuthActivity"
             android:exported="true" />
-        <activity android:name=".SplashActivity" android:exported="true">
+        <activity
+            android:name=".MainActivities.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Readings.BloodglucoActivity"></activity>
     </application>
 
 </manifest>
