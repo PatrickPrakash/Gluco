@@ -2,6 +2,7 @@ package com.projectx.gluco.MainActivities;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -16,16 +17,22 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.projectx.gluco.Fragments.AboutFragment;
 import com.projectx.gluco.Fragments.ActivityFragment;
 import com.projectx.gluco.Fragments.HomeFragment;
 import com.projectx.gluco.Fragments.LogFragment;
 import com.projectx.gluco.R;
+import com.projectx.gluco.Readings.BloodGlucoActivity;
+import com.projectx.gluco.Readings.BloodPressureActivity;
+import com.projectx.gluco.Readings.Hba1cReadActivity;
 
 import java.lang.reflect.Field;
 
-public class ConsoleActivity extends AppCompatActivity {
+public class ConsoleActivity extends AppCompatActivity implements View.OnClickListener {
+
+
 
         //View Intialisations
         private BottomNavigationView bottom_navigation;
@@ -39,8 +46,10 @@ public class ConsoleActivity extends AppCompatActivity {
         private BottomNavigationItemView logicon;
         private BottomNavigationItemView activityicon;
         private BottomNavigationItemView abouticon;
-      //  private LinearLayout bottomSheetlayout;
-       // private BottomSheetBehavior bottomSheetBehavior;
+        private ImageView pressure_read;
+        private ImageView hba1c_read;
+        private ImageView blood_read;
+
     //When back button is pressed.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -53,6 +62,8 @@ public class ConsoleActivity extends AppCompatActivity {
 
     }
 
+
+
     //onCreate Function
     @SuppressLint("ResourceType")
     @Override
@@ -60,17 +71,23 @@ public class ConsoleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_console);
 
+
         //View Declarations
-       // bottomSheetlayout  = findViewById(R.layout.bottom_sheet);
-       // bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetlayout);
         bottom_navigation = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.framelayout);
         plus = findViewById(R.id.nav_plus);
+        blood_read = findViewById(R.id.blood_read);
+        pressure_read = findViewById(R.id.pressure_read);
+        hba1c_read = findViewById(R.id.hba1c_read);
+
+
         //Fragment Objects
         homeFragment = new HomeFragment();
         logFragment = new LogFragment();
         aboutFragment = new AboutFragment();
         activityFragment = new ActivityFragment();
+
+
         //Bottomnavigationbaricons
         homeicon = findViewById(R.id.nav_home);
         plus = findViewById(R.id.nav_plus);
@@ -79,14 +96,12 @@ public class ConsoleActivity extends AppCompatActivity {
         abouticon = findViewById(R.id.nav_about);
         DefaultFragment(homeFragment); //Sets Home as Default Fragment
         disableShiftMode(bottom_navigation);//Disable shift mode function
+
+
         //OnClickListeners
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomSheet bottomSheetDialog = new BottomSheet();
-                bottomSheetDialog.show(getSupportFragmentManager(),bottomSheetDialog.getTag());
-            }
-        });
+        plus.setOnClickListener(this);
+       /* pressure_read.setOnClickListener(this);
+        hba1c_read.setOnClickListener(this);*/
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,6 +133,9 @@ public class ConsoleActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     //Popup prompt
     private void doExit() {
 
@@ -138,6 +156,10 @@ public class ConsoleActivity extends AppCompatActivity {
         alertDialog.setTitle("Gluco");
         alertDialog.show();
     }
+
+
+
+
 
     //To Disable Shifting mode in the bottom navigation view
     @SuppressLint("RestrictedApi")
@@ -161,6 +183,10 @@ public class ConsoleActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+
     //Set Fragment on Frame layout
     private void setFragment(Fragment fragment)
     {
@@ -173,5 +199,35 @@ public class ConsoleActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.framelayout,fragment);
         fragmentTransaction.commit();
+    }
+
+
+
+    //OnClickListener
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId())
+        {
+            case R.id.nav_plus :
+               BottomSheet bottomSheetDialog = new BottomSheet();
+                bottomSheetDialog.show(getSupportFragmentManager(),bottomSheetDialog.getTag());
+                break;
+
+          /*  case R.id.blood_read :
+                startActivity(new Intent(ConsoleActivity.this, BloodGlucoActivity.class));
+                break;
+
+            case R.id.pressure_read :
+                startActivity(new Intent(ConsoleActivity.this, BloodPressureActivity.class));
+                break;
+
+            case R.id.hba1c_read :
+                startActivity(new Intent(ConsoleActivity.this, Hba1cReadActivity.class));
+                break;*/
+
+            default:
+                    break;
+        }
     }
 }

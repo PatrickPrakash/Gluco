@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Authentication.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Authentication.RegisterMailActivity"
             android:exported="true" />
@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Readings.BloodglucoActivity"></activity>
+        <activity android:name=".Readings.BloodGlucoActivity" />
+        <activity android:name=".Readings.Hba1cReadActivity" />
+        <activity android:name=".Readings.BloodPressureActivity"></activity>
     </application>
 
 </manifest>

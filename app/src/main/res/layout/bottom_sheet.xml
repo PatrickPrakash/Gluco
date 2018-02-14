@@ -33,6 +33,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/blood_read"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
@@ -59,6 +60,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/hba1c_read"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
@@ -84,6 +86,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/pressure_read"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
