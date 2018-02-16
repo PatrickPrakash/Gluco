@@ -24,9 +24,6 @@ import com.projectx.gluco.Fragments.ActivityFragment;
 import com.projectx.gluco.Fragments.HomeFragment;
 import com.projectx.gluco.Fragments.LogFragment;
 import com.projectx.gluco.R;
-import com.projectx.gluco.Readings.BloodGlucoActivity;
-import com.projectx.gluco.Readings.BloodPressureActivity;
-import com.projectx.gluco.Readings.Hba1cReadActivity;
 
 import java.lang.reflect.Field;
 
@@ -213,18 +210,6 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
                BottomSheet bottomSheetDialog = new BottomSheet();
                 bottomSheetDialog.show(getSupportFragmentManager(),bottomSheetDialog.getTag());
                 break;
-
-          /*  case R.id.blood_read :
-                startActivity(new Intent(ConsoleActivity.this, BloodGlucoActivity.class));
-                break;
-
-            case R.id.pressure_read :
-                startActivity(new Intent(ConsoleActivity.this, BloodPressureActivity.class));
-                break;
-
-            case R.id.hba1c_read :
-                startActivity(new Intent(ConsoleActivity.this, Hba1cReadActivity.class));
-                break;*/
 
             default:
                     break;

@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.projectx.gluco.Readings.Hba1cReadActivity">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="222dp"
+        android:layout_height="53dp"
+        android:text="Haba1c activiyt"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="236dp" />
 </android.support.constraint.ConstraintLayout>

@@ -33,10 +33,10 @@ public class RegisterMailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_signup);
-        uEmail = (EditText) findViewById(R.id.uEmail);
-        uPass = (EditText) findViewById(R.id.uPass);
-        uCPass = (EditText) findViewById(R.id.uCPass);
-        uSignup = (Button) findViewById(R.id.uSignin);
+        uEmail = findViewById(R.id.uEmail);
+        uPass = findViewById(R.id.uPass);
+        uCPass = findViewById(R.id.uCPass);
+        uSignup = findViewById(R.id.uSignin);
         mAuth = FirebaseAuth.getInstance();
         final Intent i = new Intent(RegisterMailActivity.this,ConsoleActivity.class);
         emailSignup();

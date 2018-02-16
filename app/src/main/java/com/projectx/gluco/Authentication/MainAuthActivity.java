@@ -43,8 +43,8 @@ public class MainAuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_auth);
-        g_signin = (Button) findViewById(R.id.google_btn);
-        e_signin = (Button) findViewById(R.id.email_btn);
+        g_signin = findViewById(R.id.google_btn);
+        e_signin = findViewById(R.id.email_btn);
         btnaction();
 
 

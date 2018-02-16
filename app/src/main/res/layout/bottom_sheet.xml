@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -35,7 +35,7 @@
             <ImageView
                 android:id="@+id/blood_read"
                 android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/blooddrop" />
 
@@ -45,7 +45,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                android:text="Blood Glucose Level"
+                android:text="Blood Glucose "
                 android:textSize="12sp"
                 tools:ignore="MissingPrefix" />
         </LinearLayout>
@@ -62,7 +62,7 @@
             <ImageView
                 android:id="@+id/hba1c_read"
                 android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/bloodsample" />
 
@@ -88,7 +88,7 @@
             <ImageView
                 android:id="@+id/pressure_read"
                 android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/sphygmomanometer" />
 
