@@ -1,4 +1,4 @@
-package com.projectx.gluco.MainActivities;
+package com.projectx.gluco.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

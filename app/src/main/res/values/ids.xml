@@ -3,4 +3,6 @@
     <item name="uName" type="id" />
     <item name="uAge" type="id" />
     <item name="la" type="id" />
+    <item name="iname" type="id">iname</item>
+    <item name="iage" type="id">iage</item>
 </resources>

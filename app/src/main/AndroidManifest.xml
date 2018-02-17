@@ -32,9 +32,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Readings.BloodGlucoActivity" />
-        <activity android:name=".Readings.Hba1cReadActivity" />
-        <activity android:name=".Readings.BloodPressureActivity"></activity>
+        <activity android:name=".Readings.BloodGlucoActivity"
+            android:exported="true"/>
+        <activity android:name=".Readings.Hba1cReadActivity"
+            android:exported="true"/>
+        <activity android:name=".Readings.BloodPressureActivity"
+            android:exported="true" />
+        <activity android:name=".Userdetails.BasicinfoActivity"
+            android:exported="true" />
+        <activity android:name=".Userdetails.MedconActivity"
+            android:exported="true" />
+        <activity android:name=".Userdetails.TermsActivity"
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

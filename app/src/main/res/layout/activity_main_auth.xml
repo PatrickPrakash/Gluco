@@ -84,14 +84,13 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="319dp"
-        android:layout_height="90dp"
+        android:layout_width="284dp"
+        android:layout_height="75dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo1" />
+        app:srcCompat="@drawable/newlogo" />
 
 </android.support.constraint.ConstraintLayout>

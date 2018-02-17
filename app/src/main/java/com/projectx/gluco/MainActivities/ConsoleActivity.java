@@ -2,7 +2,6 @@ package com.projectx.gluco.MainActivities;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -21,6 +20,7 @@ import android.widget.ImageView;
 
 import com.projectx.gluco.Fragments.AboutFragment;
 import com.projectx.gluco.Fragments.ActivityFragment;
+import com.projectx.gluco.Fragments.BottomSheet;
 import com.projectx.gluco.Fragments.HomeFragment;
 import com.projectx.gluco.Fragments.LogFragment;
 import com.projectx.gluco.R;
@@ -207,7 +207,8 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId())
         {
             case R.id.nav_plus :
-               BottomSheet bottomSheetDialog = new BottomSheet();
+                //Calling Fragment
+                BottomSheet bottomSheetDialog = new BottomSheet();
                 bottomSheetDialog.show(getSupportFragmentManager(),bottomSheetDialog.getTag());
                 break;
 
