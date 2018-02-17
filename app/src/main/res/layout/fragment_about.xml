@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/msignout"
         android:layout_width="169dp"
         android:layout_height="42dp"
         android:layout_marginBottom="68dp"
