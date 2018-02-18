@@ -66,7 +66,6 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.msignout:
-                //Toast.makeText(Context, "Button Clicked", Toast.LENGTH_SHORT).show();
                 MainAuthActivity auth = new MainAuthActivity();
                 auth.signOut();
                 Intent i = new Intent(context, MainAuthActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

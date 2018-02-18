@@ -26,7 +26,7 @@
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="384dp"
-        android:layout_height="516dp"
+        android:layout_height="466dp"
         android:layout_marginBottom="56dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
@@ -37,15 +37,25 @@
 
     </FrameLayout>
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="377dp"
+        android:layout_height="45dp"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="136dp"
         android:layout_height="31dp"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        android:adjustViewBounds="false"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar3"
-        app:srcCompat="@drawable/newlogo" />
+        app:srcCompat="@drawable/newlogo"
+        tools:layout_editor_absoluteY="7dp" />
 
 </android.support.constraint.ConstraintLayout>
 
