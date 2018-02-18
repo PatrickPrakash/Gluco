@@ -128,9 +128,8 @@
             android:layout_height="150dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:text="TextView"
-            android:textSize="16sp"
-            tools:text="This is the sample text" />
+            android:text="This is the sample text"
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
