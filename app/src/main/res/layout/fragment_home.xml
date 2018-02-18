@@ -11,20 +11,22 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="374dp"
-        android:layout_height="237dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="241dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="87dp"
-            android:layout_height="23dp"
+            android:id="@+id/med_spinner"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
             android:layout_above="@+id/mgraph"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="13dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,98 +43,94 @@
             tools:layout_editor_absoluteY="28dp" />
 
         <Spinner
-            android:id="@+id/mspdate"
-            android:layout_width="87dp"
-            android:layout_height="23dp"
+            android:id="@+id/date_spinner"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
             android:layout_above="@+id/mgraph"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="23dp"
+            android:layout_alignStart="@+id/mgraph"
+            android:layout_marginStart="11dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="38dp" />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/last_check"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-    <TextView
-        android:id="@+id/last_reading"
-        android:layout_width="81dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="272dp"
-        android:layout_marginEnd="180dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/hba1c"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="139dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="152dp"
-        android:layout_marginTop="40dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="344dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_reading" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/tips"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="331dp"
-        android:layout_height="109dp"
-        android:layout_marginBottom="36dp"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:text="@string/last_check"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="296dp" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="61dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="272dp"
-        android:layout_marginEnd="116dp"
-        android:text="mg/dL"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/last_read"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView16"
+            android:layout_alignBottom="@+id/textView16"
+            android:layout_toEndOf="@+id/textView16"
+            android:paddingRight="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/last_read"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/last_read"
+            android:text="mg/dL"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="344dp"
+        android:layout_height="205dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="336dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="21dp"
+            android:text="Tip"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:text="TextView"
+            android:textSize="16sp"
+            tools:text="This is the sample text" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

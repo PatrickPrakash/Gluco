@@ -23,4 +23,18 @@
     <string name="last_check">Last check:</string>
     <string name="hba1c">HbA1c:</string>
     <string name="tips">Tips</string>
+
+    <!-- Spinner array -->
+    <string-array name="day_spinner">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+
+    <!-- Spinner medical -->
+    <string-array name="med_spinner">
+        <item>Blood Glucose</item>
+        <item>HbA1c</item>
+        <item>Blood Pressure</item>
+    </string-array>
 </resources>
