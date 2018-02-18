@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -15,7 +16,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.projectx.gluco.Fragments.AboutFragment;
@@ -33,7 +33,7 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
 
         //View Intialisations
         private BottomNavigationView bottom_navigation;
-        private FrameLayout frameLayout;
+    private ConstraintLayout ConstraintLayout;
         private AboutFragment aboutFragment;
         private ActivityFragment activityFragment;
         private HomeFragment homeFragment;
@@ -71,7 +71,7 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
 
         //View Declarations
         bottom_navigation = findViewById(R.id.bottom_navigation);
-        frameLayout = findViewById(R.id.framelayout);
+        ConstraintLayout = findViewById(R.id.ConstraintLayout);
         plus = findViewById(R.id.nav_plus);
         blood_read = findViewById(R.id.blood_read);
         pressure_read = findViewById(R.id.pressure_read);
@@ -188,13 +188,13 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
     private void setFragment(Fragment fragment)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.replace(R.id.ConstraintLayout, fragment);
         fragmentTransaction.commit();
     }
     private void DefaultFragment(Fragment fragment)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout,fragment);
+        fragmentTransaction.replace(R.id.ConstraintLayout, fragment);
         fragmentTransaction.commit();
     }
 
