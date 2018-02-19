@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Gluco.iml" filepath="$PROJECT_DIR$/Gluco.iml" />
-      <module fileurl="file://E:\Documents\Main_Project\Gluco\.idea\Gluco.iml" filepath="E:\Documents\Main_Project\Gluco\.idea\Gluco.iml" />
-      <module fileurl="file://E:\Android_Project&amp;files\Main_Project\Gluco\Gluco.iml" filepath="E:\Android_Project&amp;files\Main_Project\Gluco\Gluco.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
