@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/linearLayout"
-            android:layout_alignTop="@+id/textView3"
+            android:layout_alignTop="@+id/Gluco_label"
             android:layout_gravity="bottom|right"
             android:layout_marginEnd="17dp"
             android:layout_marginTop="10dp"
@@ -188,7 +188,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/Gluco_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/linearLayout"

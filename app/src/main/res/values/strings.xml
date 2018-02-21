@@ -37,4 +37,14 @@
         <item>HbA1c</item>
         <item>Blood Pressure</item>
     </string-array>
+    <!-- Spinner Gender -->
+    <string-array name="gender_spinner">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <!-- Spinner period -->
+    <string-array name="period_spinner">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
 </resources>

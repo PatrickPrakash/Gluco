@@ -17,8 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
-
-import static android.widget.Toast.makeText;
+import com.projectx.gluco.Userdetails.BasicinfoActivity;
 
 public class RegisterMailActivity extends AppCompatActivity {
 
@@ -67,6 +66,7 @@ public class RegisterMailActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
+                                startActivity(new Intent(RegisterMailActivity.this, BasicinfoActivity.class));
                                 Toast.makeText(RegisterMailActivity.this,"Authentication Successful",Toast.LENGTH_SHORT).show();
                             }else
                             {

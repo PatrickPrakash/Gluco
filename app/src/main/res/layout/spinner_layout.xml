@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!-- This is the spinner layout file
+It decides the the structure of the spinner.You can edit it's font,text size,height& width of the spinner textbox -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spinnerTarget"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:textColor="#000000"
+    android:textSize="16sp" />

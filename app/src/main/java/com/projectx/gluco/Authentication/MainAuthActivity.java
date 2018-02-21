@@ -95,6 +95,11 @@ public class MainAuthActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
 
+    /*--------------------------
+    *                           |
+    *  Google Authentication    |
+    *                           |
+    ----------------------------*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -113,6 +118,7 @@ public class MainAuthActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);

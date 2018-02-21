@@ -30,14 +30,14 @@ public class HomeFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_home, container, false);
         //Spinner date
         Spinner date_spinner = rootview.findViewById(R.id.date_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.day_spinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.day_spinner, R.layout.spinner_layout);
+        adapter.setDropDownViewResource(R.layout.spinner_layout);
         date_spinner.setAdapter(adapter);
 
         //Spinner medical
         Spinner med_spinner = rootview.findViewById(R.id.med_spinner);
-        ArrayAdapter<CharSequence> med_adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.med_spinner, android.R.layout.simple_spinner_item);
-        med_adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> med_adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.med_spinner, R.layout.spinner_layout);
+        med_adapter.setDropDownViewResource(R.layout.spinner_layout);
         med_spinner.setAdapter(med_adapter);
         return rootview;
     }

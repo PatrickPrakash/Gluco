@@ -2,9 +2,9 @@ package com.projectx.gluco.Authentication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.projectx.gluco.R;
+import com.projectx.gluco.Userdetails.BasicinfoActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                 {
-                                    //startActivity(new Intent(LoginActivity.this, ConsoleActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, BasicinfoActivity.class));
                                     Toast.makeText(LoginActivity.this, "SignIn Successful", Toast.LENGTH_SHORT).show();
                                 } else
                                     {
