@@ -23,6 +23,11 @@
     <string name="last_check">Last check:</string>
     <string name="hba1c">HbA1c:</string>
     <string name="tips">Tips</string>
+    <string name="add_glucose_reading">Add Glucose Reading</string>
+    <string name="notes">Notes</string>
+    <string name="time">Time</string>
+    <string name="concentration">Concentration</string>
+    <string name="mg_dl">mg/dL</string>
 
     <!-- Spinner array -->
     <string-array name="day_spinner">

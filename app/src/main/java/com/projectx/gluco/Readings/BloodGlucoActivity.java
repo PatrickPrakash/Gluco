@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,9 +79,22 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
         gluco_newdate = gluco_newdate.replace("/", "-");
     }
 
+    private void firebase_database() {
+        try {
+            mDataref = FirebaseDatabase.getInstance().getReference();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
+            String uid = user.getUid();
+            Blood_gluco blood_gluco = new Blood_gluco(gluco_con, gluco_date, gluco_time, gluco_period_string, gluco_notes);
+            mDataref.child("User_Readings").child(uid).child("Blood_Glucose").child(gluco_date).child(gluco_time).setValue(blood_gluco);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error code:1002,Database Connection Failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void updateTime() {
-        int hour = 12;
-        int minute = 30;
+        int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
+        int minute = myCalendar.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(BloodGlucoActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -93,8 +107,6 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    private void firebase_database() {
-    }
 
     @Override
     public void onClick(View v) {
@@ -110,11 +122,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
                 Log.v(TAG, "New value:" + gluco_notes);
                 Log.v(TAG, "New value:" + gluco_period_string);
                 Log.v(TAG, "New value:" + gluco_time);
-                mDataref = FirebaseDatabase.getInstance().getReference();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
-                String uid = user.getUid();
-                Blood_gluco blood_gluco = new Blood_gluco(gluco_con, gluco_date, gluco_time, gluco_period_string, gluco_notes);
-                mDataref.child("User_Readings").child(uid).child("Blood_Glucose").setValue(blood_gluco);
+                firebase_database();
                 break;
 
             case R.id.gluco_add_date:
