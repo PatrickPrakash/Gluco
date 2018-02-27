@@ -18,7 +18,7 @@
     <string name="about">About</string>
     <string name="activity">Activity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="last_check">Last check:</string>
     <string name="hba1c">HbA1c:</string>
@@ -28,6 +28,13 @@
     <string name="time">Time</string>
     <string name="concentration">Concentration</string>
     <string name="mg_dl">mg/dL</string>
+    <string name="hign">Hign</string>
+    <string name="High">High</string>
+    <string name="hyperglycemia">Hyperglycemia</string>
+    <string name="low">Low</string>
+    <string name="hypoglycemia">Hypoglycemia</string>
+    <string name="Ok">Ok</string>
+    <string name="_0">0</string>
 
     <!-- Spinner array -->
     <string-array name="day_spinner">

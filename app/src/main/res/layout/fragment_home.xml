@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.projectx.gluco.Fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

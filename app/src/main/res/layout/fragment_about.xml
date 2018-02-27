@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.projectx.gluco.Fragments.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <Button
         android:id="@+id/msignout"
