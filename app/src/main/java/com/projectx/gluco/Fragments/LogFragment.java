@@ -26,7 +26,7 @@ import com.projectx.gluco.R;
  */
 public class LogFragment extends Fragment {
     RecyclerView recyclerView;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, reference;
     FirebaseAuth firebaseAuth;
 
     public LogFragment() {
@@ -42,8 +42,8 @@ public class LogFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
         String uid = user.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("User_Readings").child(uid).child("Blood_Glucose");
-        databaseReference.keepSynced(true);
+        reference = databaseReference.child("User_Readings").child(uid).child("Blood_Glucose").child("06-02-2018");
+        reference.keepSynced(true);
         recyclerView = rootView.findViewById(R.id.fragment_history_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
@@ -53,7 +53,7 @@ public class LogFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<Modeli, BloodViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Modeli, BloodViewHolder>(Modeli.class, R.layout.fragment_history_item, BloodViewHolder.class, databaseReference) {
+        FirebaseRecyclerAdapter<Modeli, BloodViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Modeli, BloodViewHolder>(Modeli.class, R.layout.fragment_history_item, BloodViewHolder.class, reference) {
             public static final String TAG = "Fire";
 
             @Override
