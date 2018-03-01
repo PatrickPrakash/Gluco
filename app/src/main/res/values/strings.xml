@@ -1,40 +1,18 @@
 <resources>
     <string name="app_name">Gluco</string>
-    <string name="ok">ok</string>
-    <string name="age">Age</string>
-    <string name="username">Username</string>
-    <string name="name">Name</string>
     <string name="todo">TODO</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="email_id">Email ID</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="nav_home">Home</string>
-    <string name="nav_list">Log</string>
-    <string name="nav_person">Me</string>
-    <string name="nav_fire">Diet</string>
     <string name="home">Home</string>
     <string name="log">Log</string>
     <string name="about">About</string>
     <string name="activity">Activity</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="last_check">Last check:</string>
-    <string name="hba1c">HbA1c:</string>
-    <string name="tips">Tips</string>
-    <string name="add_glucose_reading">Add Glucose Reading</string>
-    <string name="notes">Notes</string>
-    <string name="time">Time</string>
-    <string name="concentration">Concentration</string>
-    <string name="mg_dl">mg/dL</string>
-    <string name="hign">Hign</string>
     <string name="High">High</string>
     <string name="hyperglycemia">Hyperglycemia</string>
     <string name="low">Low</string>
     <string name="hypoglycemia">Hypoglycemia</string>
     <string name="Ok">Ok</string>
-    <string name="_0">0</string>
 
     <!-- Spinner array -->
     <string-array name="day_spinner">
