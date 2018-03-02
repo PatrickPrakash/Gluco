@@ -42,7 +42,7 @@ public class LogFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
         String uid = user.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        reference = databaseReference.child("User_Readings").child(uid).child("Blood_Glucose").child("06-02-2018");
+        reference = databaseReference.child("User_Readings").child(uid).child("Blood_Glucose");
         reference.keepSynced(true);
         recyclerView = rootView.findViewById(R.id.fragment_history_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
