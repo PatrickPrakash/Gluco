@@ -5,7 +5,7 @@ package com.projectx.gluco.DataModels;
  */
 
 public class User_info {
-    private String name, age, gender;
+    private String name, age, gender, medcon;
 
     //Default constructor
     public User_info() {
@@ -13,13 +13,16 @@ public class User_info {
     }
 
     //User-Defined Constructor
-    public User_info(String name, String age, String gender) {
+    public User_info(String name, String age, String gender, String medcon) {
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.medcon = medcon;
     }
 
     //Getter & Setter
+
+
     public String getName() {
         return name;
     }
@@ -44,13 +47,21 @@ public class User_info {
         this.gender = gender;
     }
 
-    //To string function
+    public String getMedcon() {
+        return medcon;
+    }
+
+    public void setMedcon(String medcon) {
+        this.medcon = medcon;
+    }
+
     @Override
     public String toString() {
         return "User_info{" +
                 "name='" + name + '\'' +
                 ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +
+                ", medcon='" + medcon + '\'' +
                 '}';
     }
 }

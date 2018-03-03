@@ -76,7 +76,7 @@ public class MedconActivity extends AppCompatActivity {
                 mDataref = FirebaseDatabase.getInstance().getReference();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                 String uid = user.getUid();
-                mDataref.child("users").child(uid).child("medcon").child("GlucoStatus").setValue(med_state);
+                mDataref.child("users").child(uid).child("medcon").setValue(med_state);
               /*  Log.v(TAG,"The value"+med_state);*/
                 startActivity(new Intent(MedconActivity.this, ConsoleActivity.class));
             }
