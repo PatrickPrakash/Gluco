@@ -2,11 +2,11 @@ package com.projectx.gluco.Readings;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.DataModels.Blood_gluco;
+import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
 
 import java.text.SimpleDateFormat;
@@ -85,7 +86,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
             String uid = user.getUid();
             Blood_gluco blood_gluco = new Blood_gluco(gluco_con, gluco_date, gluco_time, gluco_period_string, gluco_notes);
-            mDataref.child("User_Readings").child(uid).child("Blood_Glucose").child(gluco_date).child(gluco_time).setValue(blood_gluco);
+            mDataref.child("User_Readings").child(uid).child("Blood_Glucose").push().setValue(blood_gluco);
         } catch (Exception e) {
             Toast.makeText(this, "Error code:1002,Database Connection Failed", Toast.LENGTH_SHORT).show();
         }
@@ -117,12 +118,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
                 gluco_notes = gluco_add_notes.getText().toString();
                 gluco_period_string = gluco_period.getSelectedItem().toString();
                 gluco_time = gluco_add_time.getText().toString();
-                Log.v(TAG, "New date:" + gluco_date);
-                Log.v(TAG, "New value:" + gluco_con);
-                Log.v(TAG, "New value:" + gluco_notes);
-                Log.v(TAG, "New value:" + gluco_period_string);
-                Log.v(TAG, "New value:" + gluco_time);
-                firebase_database();
+                startActivity(new Intent(BloodGlucoActivity.this, ConsoleActivity.class));
                 break;
 
             case R.id.gluco_add_date:

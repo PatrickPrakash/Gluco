@@ -2,6 +2,7 @@ package com.projectx.gluco.Readings;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.DataModels.Pressure_gluco;
+import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
 
 import java.text.SimpleDateFormat;
@@ -103,7 +105,7 @@ public class BloodPressureActivity extends AppCompatActivity implements View.OnC
                 uid = user.getUid();
 
                 Pressure_gluco pressure_gluco = new Pressure_gluco(pressure_max, pressure_min, pressure_date, pressure_notes, pressure_time, pressure_period_string);
-                databaseReference.child("User_Readings").child(uid).child("Pressure_Readings").child(pressure_date).child(pressure_time).setValue(pressure_gluco);
+                databaseReference.child("User_Readings").child(uid).child("Pressure_Readings").push().setValue(pressure_gluco);
             } else {
                 Toast.makeText(this, "Error code:1001", Toast.LENGTH_SHORT).show();
             }
@@ -124,6 +126,7 @@ public class BloodPressureActivity extends AppCompatActivity implements View.OnC
                 pressure_period_string = pressure_period.getSelectedItem().toString();
                 pressure_time = pressure_add_time.getText().toString();
                 firebase_database();
+                startActivity(new Intent(BloodPressureActivity.this, ConsoleActivity.class));
                 break;
 
             case R.id.pressure_add_date:

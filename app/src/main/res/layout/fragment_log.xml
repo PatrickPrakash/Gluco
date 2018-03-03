@@ -32,166 +32,21 @@
             android:layout_below="@id/history_spinner"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/fragment_history_legend"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/circle_hypo_filled"
-                        android:contentDescription="@string/todo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/hypoglycemia"
-                        android:textColor="@color/gluco_reading_hypo"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/circle_low_filled"
-                        android:contentDescription="@string/todo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/low"
-                        android:textColor="@color/gluco_reading_low"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/circle_ok_filled"
-                        android:contentDescription="@string/todo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/Ok"
-                        android:textColor="@color/gluco_reading_ok"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/circle_high_filled"
-                        android:contentDescription="@string/todo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/High"
-                        android:textColor="@color/gluco_reading_high"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/circle_hyper_filled"
-                        android:contentDescription="@string/todo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:text="@string/hyperglycemia"
-                        android:textColor="@color/gluco_reading_hyper"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="16dp"
-                android:background="#DADADA" />
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_history_recycler_view"
-                android:layout_width="fill_parent"
-                android:layout_height="591dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="vertical"
-                android:paddingBottom="32dp"
-                android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_history_recycler_view"
+            android:layout_width="fill_parent"
+            android:layout_height="650dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/history_spinner"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:paddingBottom="32dp"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </RelativeLayout>
 

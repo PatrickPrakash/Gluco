@@ -2,6 +2,7 @@ package com.projectx.gluco.Readings;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.DataModels.Hba1c_gluco;
+import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
 
 import java.text.SimpleDateFormat;
@@ -98,7 +100,7 @@ public class Hba1cReadActivity extends AppCompatActivity implements View.OnClick
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
             String uid = user.getUid();
             Hba1c_gluco hba1c_gluco = new Hba1c_gluco(hba1c_con, hba1c_date, hba1c_time, hba1c_notes, hba1c_period_string);
-            databaseReference.child("User_Readings").child(uid).child("Hba1c_Readings").child(hba1c_date).child(hba1c_time).setValue(hba1c_gluco);
+            databaseReference.child("User_Readings").child(uid).child("Hba1c_Readings").push().setValue(hba1c_gluco);
         } catch (Exception e) {
             Toast.makeText(this, "Error code:1002,Database Connection Failed", Toast.LENGTH_SHORT).show();
         }
@@ -119,6 +121,7 @@ public class Hba1cReadActivity extends AppCompatActivity implements View.OnClick
                 Log.v(TAG, "New value:" + hba1c_period_string);
                 Log.v(TAG, "New value:" + hba1c_time);
                 firebase_database();
+                startActivity(new Intent(Hba1cReadActivity.this, ConsoleActivity.class));
                 break;
 
             case R.id.hba1c_add_date:
