@@ -73,7 +73,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         gluco_add_date.setText(sdf.format(myCalendar.getTime()));
         gluco_newdate = sdf.format(myCalendar.getTime());

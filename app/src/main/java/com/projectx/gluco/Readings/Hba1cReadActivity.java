@@ -72,7 +72,7 @@ public class Hba1cReadActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         hba1c_add_date.setText(sdf.format(myCalendar.getTime()));
         hba1c_newdate = sdf.format(myCalendar.getTime());

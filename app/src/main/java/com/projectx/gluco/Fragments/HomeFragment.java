@@ -3,6 +3,7 @@ package com.projectx.gluco.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +25,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.projectx.gluco.Readings.BloodGlucoActivity.TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -27,6 +37,9 @@ public class HomeFragment extends Fragment {
 
     TextView TipText, LastRead;
     DatabaseReference dref;
+    LineChart lineChart;
+    DatabaseReference mDataref;
+    List<Entry> entries = new ArrayList<Entry>();
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -38,6 +51,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootview = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        lineChart = rootview.findViewById(R.id.mgraph);
+        LastRead = rootview.findViewById(R.id.LastRead);
+        TipText = rootview.findViewById(R.id.TipText);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
+        String uid = user.getUid();
+        mDataref = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
+        mDataref.keepSynced(true);
+
         //Spinner date
         Spinner date_spinner = rootview.findViewById(R.id.date_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.day_spinner, R.layout.spinner_layout);
@@ -50,11 +73,33 @@ public class HomeFragment extends Fragment {
         med_adapter.setDropDownViewResource(R.layout.spinner_layout);
         med_spinner.setAdapter(med_adapter);
 
-        LastRead = rootview.findViewById(R.id.LastRead);
-        TipText = rootview.findViewById(R.id.TipText);
+        mDataref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Float concentration = Float.parseFloat(child.child("concentration").getValue().toString());
+                    Float date = Float.parseFloat(child.child("concentration").getValue().toString());
+                    /*Float date = Float.parseFloat(child.child("date").getValue().toString());*/
+                    Log.v(TAG, "Concentration" + concentration);
+                    Log.v(TAG, "Date" + date);
+                    entries.add(new Entry(concentration, date));
+                    LineDataSet dataSet = new LineDataSet(entries, "Glucose Reading");
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final String uid = user.getUid();
+                    LineData lineData = new LineData(dataSet);
+                    lineChart.setData(lineData);
+                    lineChart.invalidate(); // refresh
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         dref = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
 
         Query query = dref.orderByKey().limitToLast(1);

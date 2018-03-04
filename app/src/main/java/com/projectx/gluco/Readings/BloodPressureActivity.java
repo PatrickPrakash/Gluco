@@ -74,7 +74,7 @@ public class BloodPressureActivity extends AppCompatActivity implements View.OnC
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         pressure_add_date.setText(sdf.format(myCalendar.getTime()));
         pressure_newdate = sdf.format(myCalendar.getTime());
