@@ -3,7 +3,6 @@ package com.projectx.gluco.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.projectx.gluco.DataModels.Gluco_value;
 import com.projectx.gluco.R;
 
 /**
@@ -57,22 +55,20 @@ public class HomeFragment extends Fragment {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String uid = user.getUid();
-        dref = FirebaseDatabase.getInstance().getReference();
+        dref = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
 
-        Query query = dref.child("User_Readings").child(uid).child("Blood_Glucose").orderByKey().limitToLast(1);
-
+        Query query = dref.orderByKey().limitToLast(1);
 
         query.addValueEventListener(new ValueEventListener() {
             public static final String TAG = "LastValue";
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String concentration;
-                Gluco_value gluco_value = new Gluco_value();
-                dataSnapshot.getValue(Gluco_value.class);
-                concentration = gluco_value.getConcentration();
-                Log.v(TAG, "LastValue" + concentration);
-                LastRead.setText(concentration);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    String LastValue = child.child("concentration").getValue().toString();
+                    LastRead.setText(LastValue);
+                }
+
             }
 
             @Override

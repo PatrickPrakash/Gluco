@@ -78,20 +78,22 @@
 
         <TextView
             android:id="@+id/LastRead"
-            android:layout_width="75dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView16"
-            android:layout_alignBottom="@+id/textView16"
+            android:layout_alignBottom="@+id/textView18"
+            android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/textView16"
             android:paddingRight="20dp"
+            android:text="777"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/LastRead"
-            android:layout_marginStart="11dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/LastRead"
             android:text="mg/dL"
             android:textSize="16sp"

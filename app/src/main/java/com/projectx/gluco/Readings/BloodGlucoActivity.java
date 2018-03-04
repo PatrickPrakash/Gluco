@@ -118,6 +118,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
                 gluco_notes = gluco_add_notes.getText().toString();
                 gluco_period_string = gluco_period.getSelectedItem().toString();
                 gluco_time = gluco_add_time.getText().toString();
+                firebase_database();
                 startActivity(new Intent(BloodGlucoActivity.this, ConsoleActivity.class));
                 break;
 
