@@ -37,4 +37,8 @@
         <item>AM</item>
         <item>PM</item>
     </string-array>
+    <string name="title_activity_bottomnav">BottomnavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

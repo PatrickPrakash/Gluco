@@ -15,6 +15,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MedconActivity extends AppCompatActivity {
 
     private static final String TAG = "Med Activity";
@@ -73,10 +76,13 @@ public class MedconActivity extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDataref = FirebaseDatabase.getInstance().getReference();
+                mDataref = FirebaseDatabase.getInstance().getReference().child("users");
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                 String uid = user.getUid();
-                mDataref.child("users").child(uid).child("medcon").setValue(med_state);
+                Map<String, Object> userUpdates = new HashMap<>();
+                userUpdates.put(uid + "/medcon", med_state);
+                mDataref.updateChildren(userUpdates);
+              /*  mDataref.child("users").child(uid).child("medcon").setValue(med_state);*/
               /*  Log.v(TAG,"The value"+med_state);*/
                 startActivity(new Intent(MedconActivity.this, ConsoleActivity.class));
             }
