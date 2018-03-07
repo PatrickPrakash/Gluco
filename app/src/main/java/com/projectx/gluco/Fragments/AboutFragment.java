@@ -10,9 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.Authentication.MainAuthActivity;
+import com.projectx.gluco.DataModels.Profile;
+import com.projectx.gluco.DataModels.User_info;
 import com.projectx.gluco.R;
 
 
@@ -21,6 +32,8 @@ import com.projectx.gluco.R;
  */
 
 public class AboutFragment extends Fragment implements View.OnClickListener {
+    private DatabaseReference mDatabase;
+    private TextView name_txt,age_txt,gender_txt,medcon_txt;
     Context context;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthstateListener;
@@ -53,6 +66,38 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_about, container, false);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        name_txt = rootview.findViewById(R.id.name_txt);
+        age_txt = rootview.findViewById(R.id.age_txt);
+        medcon_txt = rootview.findViewById(R.id.medcon_txt);
+        gender_txt = rootview.findViewById(R.id.gen_txt);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name,age,gender,medcon;
+                Profile profile = dataSnapshot.getValue(Profile.class);
+                name = profile.getName();
+                age = profile.getAge();
+                gender = profile.getGender();
+                medcon = profile.getMedcon();
+
+                name_txt.setText(name);
+                age_txt.setText(age);
+                gender_txt.setText(gender);
+                medcon_txt.setText(medcon);
+                Toast.makeText(context, "Medical Condition"+medcon, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Age"+age, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mDatabase.keepSynced(true);
+
 
         //Get a reference to the layout
         Button msignout = rootview.findViewById(R.id.msignout);
