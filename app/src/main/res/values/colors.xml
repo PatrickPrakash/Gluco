@@ -11,5 +11,5 @@
     <color name="gluco_reading_hyper">#E86445</color>
     <color name="gluco_reading_low">#4B8DDB</color>
     <color name="gluco_reading_high">#E7B85D</color>
-    <color name="gluco_reading_hypo">#6F4EAB</color>
+    <color name="gluco_reading_hypo">#6f4eab</color>
 </resources>

@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.Authentication.MainAuthActivity;
 import com.projectx.gluco.DataModels.Profile;
-import com.projectx.gluco.DataModels.User_info;
 import com.projectx.gluco.R;
 
 
@@ -32,9 +29,9 @@ import com.projectx.gluco.R;
  */
 
 public class AboutFragment extends Fragment implements View.OnClickListener {
+    Context context;
     private DatabaseReference mDatabase;
     private TextView name_txt,age_txt,gender_txt,medcon_txt;
-    Context context;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthstateListener;
 
@@ -87,8 +84,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
                 age_txt.setText(age);
                 gender_txt.setText(gender);
                 medcon_txt.setText(medcon);
-                Toast.makeText(context, "Medical Condition"+medcon, Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, "Age"+age, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

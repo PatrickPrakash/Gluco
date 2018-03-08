@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
+import com.projectx.gluco.Userdetails.BasicinfoActivity;
 
 public class MainAuthActivity extends AppCompatActivity {
 
@@ -130,7 +131,7 @@ public class MainAuthActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Toast.makeText(MainAuthActivity.this,"Authentication Success",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainAuthActivity.this, ConsoleActivity.class));
+                            startActivity(new Intent(MainAuthActivity.this, BasicinfoActivity.class));
                             FirebaseUser user = mAuth.getCurrentUser();
 
                         } else {
@@ -139,7 +140,7 @@ public class MainAuthActivity extends AppCompatActivity {
                             Toast.makeText(MainAuthActivity.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
                         }
 
-                        // ...
+
                     }
                 });
 

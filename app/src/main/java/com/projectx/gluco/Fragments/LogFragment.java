@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -35,6 +36,7 @@ public class LogFragment extends Fragment {
     DatabaseReference reference;
     FirebaseAuth firebaseAuth;
     Spinner history_spinner;
+    LinearLayout fragment_history_legend;
     public LogFragment() {
 
     }
@@ -45,15 +47,16 @@ public class LogFragment extends Fragment {
         //Inflate the Android Log fragment
         View rootView = inflater.inflate(R.layout.fragment_log, container, false);
 
+        fragment_history_legend = rootView.findViewById(R.id.fragment_history_legend);
 
-        Spinner date_spinner = rootView.findViewById(R.id.history_spinner);
+        Spinner history_spinner = rootView.findViewById(R.id.history_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.med_spinner, R.layout.spinner_layout);
         adapter.setDropDownViewResource(R.layout.spinner_layout);
-        date_spinner.setAdapter(adapter);
+        history_spinner.setAdapter(adapter);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
         String uid = user.getUid();
 
-        date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        history_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 0) {
@@ -68,10 +71,17 @@ public class LogFragment extends Fragment {
                         protected void populateViewHolder(BloodViewHolder viewHolder, Blood_gluco model, int position) {
                             Log.v(TAG, "Value" + model.getDate());
                             Log.v(TAG, "Value of concentration" + model.getConcentration());
-                            viewHolder.setGConcentration(model.getConcentration());
-                            viewHolder.setGDate(model.getDate());
-                            viewHolder.setGNotes(model.getNotes());
-                            viewHolder.setGTime(model.getTime());
+                            String concentration = model.getConcentration();
+                            String date = model.getDate();
+                            String notes = model.getNotes();
+                            String time = model.getTime();
+
+                            viewHolder.setGConcentration(concentration);
+                            viewHolder.setGDate(date);
+                            viewHolder.setGNotes(notes);
+                            viewHolder.setGTime(time);
+                            viewHolder.getContext(getContext());
+
                         }
                     };
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -86,6 +96,11 @@ public class LogFragment extends Fragment {
                         public static final String TAG = "Fire";
 
                         @Override
+                        public void onBindViewHolder(HbA1cViewHolder viewHolder, int position) {
+                            super.onBindViewHolder(viewHolder, position);
+                        }
+
+                        @Override
                         protected void populateViewHolder(HbA1cViewHolder viewHolder, Hba1c_gluco model, int position) {
                             Log.v(TAG, "Value" + model.getHba1c_con());
                             Log.v(TAG, "Value of concentration" + model.getHba1c_con());
@@ -93,8 +108,10 @@ public class LogFragment extends Fragment {
                             viewHolder.setGDate(model.getHba1c_date());
                             viewHolder.setGNotes(model.getHba1c_notes());
                             viewHolder.setGTime(model.getHba1c_time());
+
                         }
                     };
+                    fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
                 if (id == 2) {
@@ -116,6 +133,8 @@ public class LogFragment extends Fragment {
                             viewHolder.setGTime(model.getPressure_time());
                         }
                     };
+
+                    fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
 
                 }

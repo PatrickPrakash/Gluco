@@ -40,6 +40,8 @@ public class HomeFragment extends Fragment {
     LineChart lineChart;
     DatabaseReference mDataref;
     List<Entry> entries = new ArrayList<Entry>();
+    String LastValue;
+    int Last;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -77,14 +79,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    final String dates = child.child("date").getValue().toString();
+                    final ArrayList<String> datearray = new ArrayList<String>();
+                    datearray.add(dates);
+                   /* dates = dates.replace("-","/");*/
                     Float concentration = Float.parseFloat(child.child("concentration").getValue().toString());
-                    Float date = Float.parseFloat(child.child("concentration").getValue().toString());
                     /*Float date = Float.parseFloat(child.child("date").getValue().toString());*/
                     Log.v(TAG, "Concentration" + concentration);
-                    Log.v(TAG, "Date" + date);
-                    entries.add(new Entry(concentration, date));
-                    LineDataSet dataSet = new LineDataSet(entries, "Glucose Reading");
+                   /* Log.v(TAG, "Date" + date);*/
 
+                    entries.add(new Entry(concentration, concentration));
+                    LineDataSet dataSet = new LineDataSet(entries, dates);
                     LineData lineData = new LineData(dataSet);
                     lineChart.setData(lineData);
                     lineChart.invalidate(); // refresh
@@ -98,7 +103,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        //Last value Reading
 
         dref = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
 
@@ -110,7 +115,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String LastValue = child.child("concentration").getValue().toString();
+                    LastValue = child.child("concentration").getValue().toString();
                     LastRead.setText(LastValue);
                 }
 
@@ -121,6 +126,16 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        Last = Integer.parseInt(LastValue);
+
+        if (Last <= 200 && Last >= 70) {
+            TipText.setText("when eating out,eat the same portion sizes you would at home and take the leftovers go");
+        } else if (Last > 200) {
+            TipText.setText("Did you know that,Diabetes can be controlled with a proper Diet");
+        }
+
+
 
         return rootview;
     }
