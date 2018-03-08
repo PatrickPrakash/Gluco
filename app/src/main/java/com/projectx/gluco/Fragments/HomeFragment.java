@@ -117,6 +117,16 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     LastValue = child.child("concentration").getValue().toString();
                     LastRead.setText(LastValue);
+                    Log.v(TAG, "The last value " + LastValue);
+                    Last = Integer.parseInt(LastValue);
+                    Log.v(TAG, "Integer value" + Last);
+                    if (Last <= 200 && Last >= 70) {
+                        TipText.setText("when eating out,eat the same portion sizes you would at home and take the leftovers go");
+                    } else if (Last > 200) {
+                        TipText.setText("Did you know that, Diabetes can be controlled with a proper Diet");
+                    } else if (Last < 70) {
+                        TipText.setText("Eat regular meals and snacks. Your meal plan is key to preventing hypoglycemia.");
+                    }
                 }
 
             }
@@ -126,16 +136,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-        Last = Integer.parseInt(LastValue);
-
-        if (Last <= 200 && Last >= 70) {
-            TipText.setText("when eating out,eat the same portion sizes you would at home and take the leftovers go");
-        } else if (Last > 200) {
-            TipText.setText("Did you know that,Diabetes can be controlled with a proper Diet");
-        }
-
-
 
         return rootview;
     }

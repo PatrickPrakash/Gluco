@@ -84,6 +84,7 @@ public class LogFragment extends Fragment {
 
                         }
                     };
+                    fragment_history_legend.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
 
