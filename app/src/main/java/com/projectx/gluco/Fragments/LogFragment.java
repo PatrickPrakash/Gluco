@@ -1,8 +1,11 @@
 package com.projectx.gluco.Fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,11 +20,15 @@ import android.widget.Spinner;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.DataModels.Blood_gluco;
 import com.projectx.gluco.DataModels.Hba1c_gluco;
 import com.projectx.gluco.DataModels.Pressure_gluco;
+import com.projectx.gluco.Listeners.LogListener;
 import com.projectx.gluco.R;
 import com.projectx.gluco.ViewHolders.BloodViewHolder;
 import com.projectx.gluco.ViewHolders.HbA1cViewHolder;
@@ -37,6 +44,7 @@ public class LogFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     Spinner history_spinner;
     LinearLayout fragment_history_legend;
+    BottomNavigationView bottomNavigationView;
     public LogFragment() {
 
     }
@@ -48,6 +56,7 @@ public class LogFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_log, container, false);
 
         fragment_history_legend = rootView.findViewById(R.id.fragment_history_legend);
+        recyclerView = rootView.findViewById(R.id.fragment_history_recycler_view);
 
         Spinner history_spinner = rootView.findViewById(R.id.history_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.med_spinner, R.layout.spinner_layout);
@@ -59,6 +68,7 @@ public class LogFragment extends Fragment {
         history_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                final BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
                 if (id == 0) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                     String uid = user.getUid();
@@ -82,6 +92,7 @@ public class LogFragment extends Fragment {
                             viewHolder.setGTime(time);
                             viewHolder.getContext(getContext());
 
+                            bottomSheetRecycler.getReference(reference);
                         }
                     };
                     fragment_history_legend.setVisibility(View.VISIBLE);
@@ -109,9 +120,9 @@ public class LogFragment extends Fragment {
                             viewHolder.setGDate(model.getHba1c_date());
                             viewHolder.setGNotes(model.getHba1c_notes());
                             viewHolder.setGTime(model.getHba1c_time());
-
                         }
                     };
+                    bottomSheetRecycler.getReference(reference);
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
@@ -134,11 +145,13 @@ public class LogFragment extends Fragment {
                             viewHolder.setGTime(model.getPressure_time());
                         }
                     };
-
+                    bottomSheetRecycler.getReference(reference);
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
 
                 }
+
+
             }
 
             @Override
@@ -148,11 +161,50 @@ public class LogFragment extends Fragment {
             }
         });
 
-        /*reference = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
-        reference.keepSynced(true);*/
-        recyclerView = rootView.findViewById(R.id.fragment_history_recycler_view);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnItemTouchListener(new LogListener(getActivity(), recyclerView, new ActivityListener() {
+            @Override
+            public void onClick(View view, final int position) {
+               /* Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();*/
+                /*BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                bottomSheetRecycler.show(getFragmentManager(),bottomSheetRecycler.getTag());
+                bottomSheetRecycler.getPosition(position);*/
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                        getActivity());
+
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int selectedposition = position;
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
+
+                alertDialog.setNegativeButton("No", null);
+
+                alertDialog.setMessage("Do you want to exit?");
+                alertDialog.setTitle("Gluco");
+                alertDialog.show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+
+            }
+        }));
         recyclerView.setHasFixedSize(true);
         return rootView;
     }
@@ -164,6 +216,11 @@ public class LogFragment extends Fragment {
 
     }
 
+    public interface ActivityListener {
+        void onClick(View view, int position);
+
+        void onLongClick(View view, int position);
+    }
 
 
 }

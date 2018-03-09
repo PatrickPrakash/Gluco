@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/Delete"
+        android:id="@+id/delete_btn"
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="100dp"
         android:layout_height="match_parent"
