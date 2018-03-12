@@ -35,7 +35,7 @@ public class BloodPressureActivity extends AppCompatActivity implements View.OnC
     private EditText pressure_add_min, pressure_add_max, pressure_add_time, pressure_add_date, pressure_add_notes;
     private Spinner pressure_period;
     private FloatingActionButton floatingActionButton;
-    private String pressure_newdate, pressure_max, pressure_min, pressure_time, pressure_date, pressure_notes, pressure_period_string;
+    private String pressure_newdate, pressure_max, pressure_min, pressure_time, pressure_date, pressure_notes, pressure_period_string, pressure_key;
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -103,9 +103,10 @@ public class BloodPressureActivity extends AppCompatActivity implements View.OnC
             String uid = null;
             if (user != null) {
                 uid = user.getUid();
-
                 Pressure_gluco pressure_gluco = new Pressure_gluco(pressure_max, pressure_min, pressure_date, pressure_notes, pressure_time, pressure_period_string);
-                databaseReference.child("User_Readings").child(uid).child("Pressure_Readings").push().setValue(pressure_gluco);
+                pressure_key = databaseReference.push().getKey();
+                pressure_gluco.setKey(pressure_key);
+                databaseReference.child("User_Readings").child(uid).child("Pressure_Readings").child(pressure_key).setValue(pressure_gluco);
             } else {
                 Toast.makeText(this, "Error code:1001", Toast.LENGTH_SHORT).show();
             }

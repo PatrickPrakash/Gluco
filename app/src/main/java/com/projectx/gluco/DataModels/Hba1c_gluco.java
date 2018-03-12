@@ -10,6 +10,7 @@ public class Hba1c_gluco {
     private String hba1c_time;
     private String hba1c_notes;
     private String hba1c_period;
+    private String key;
 
     public Hba1c_gluco() {
 
@@ -61,6 +62,14 @@ public class Hba1c_gluco {
 
     public void setHba1c_period(String hba1c_period) {
         this.hba1c_period = hba1c_period;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override

@@ -12,9 +12,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,10 +28,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.projectx.gluco.Readings.BloodGlucoActivity.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +42,9 @@ public class HomeFragment extends Fragment {
     DatabaseReference dref;
     LineChart lineChart;
     DatabaseReference mDataref;
+
+    /*chart*/
+    ArrayList<GraphData> graphDataObjects = new ArrayList<GraphData>();
     List<Entry> entries = new ArrayList<Entry>();
     String LastValue;
     int Last;
@@ -79,22 +85,38 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    final String dates = child.child("date").getValue().toString();
-                    final ArrayList<String> datearray = new ArrayList<String>();
-                    datearray.add(dates);
-                   /* dates = dates.replace("-","/");*/
-                    Float concentration = Float.parseFloat(child.child("concentration").getValue().toString());
-                    /*Float date = Float.parseFloat(child.child("date").getValue().toString());*/
-                    Log.v(TAG, "Concentration" + concentration);
-                   /* Log.v(TAG, "Date" + date);*/
-
-                    entries.add(new Entry(concentration, concentration));
-                    LineDataSet dataSet = new LineDataSet(entries, dates);
-                    LineData lineData = new LineData(dataSet);
-                    lineChart.setData(lineData);
-                    lineChart.invalidate(); // refresh
-
+                    String date = child.child("date").getValue().toString();
+                    String concentration = child.child("concentration").getValue().toString();
+                    graphDataObjects.add(new GraphData(date, concentration));
                 }
+
+                for (GraphData graphData : graphDataObjects) {
+                    entries.add(new Entry(graphData.getDateX(), graphData.getConcentrationY()));
+                }
+                LineDataSet dataSet = new LineDataSet(entries, "Dates");
+                LineData lineData = new LineData(dataSet);
+                lineChart.setData(lineData);
+                lineChart.invalidate(); // refresh
+
+
+                /*XAxis Data formatter*/
+
+                IAxisValueFormatter formatter = new IAxisValueFormatter() {
+
+                    @Override
+                    public String getFormattedValue(float date, AxisBase axis) {
+                        String dateOnX = "Err";
+                        try {
+                            dateOnX = DateBuilder.getDate(date, new SimpleDateFormat("dd-MM-yy"));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        return dateOnX;
+                    }
+                };
+                XAxis xAxis = lineChart.getXAxis();
+                xAxis.setGranularityEnabled(false);
+                xAxis.setValueFormatter(formatter);
             }
 
             @Override

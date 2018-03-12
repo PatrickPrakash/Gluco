@@ -1,11 +1,9 @@
 package com.projectx.gluco.Fragments;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,11 +18,8 @@ import android.widget.Spinner;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.projectx.gluco.DataModels.Blood_gluco;
 import com.projectx.gluco.DataModels.Hba1c_gluco;
 import com.projectx.gluco.DataModels.Pressure_gluco;
@@ -41,10 +36,13 @@ import com.projectx.gluco.ViewHolders.PressureViewHolder;
 public class LogFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference reference;
+    DatabaseReference reference1;
+    DatabaseReference reference2;
     FirebaseAuth firebaseAuth;
     Spinner history_spinner;
     LinearLayout fragment_history_legend;
     BottomNavigationView bottomNavigationView;
+    String key;
     public LogFragment() {
 
     }
@@ -68,7 +66,6 @@ public class LogFragment extends Fragment {
         history_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                final BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
                 if (id == 0) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                     String uid = user.getUid();
@@ -85,16 +82,22 @@ public class LogFragment extends Fragment {
                             String date = model.getDate();
                             String notes = model.getNotes();
                             String time = model.getTime();
-
+                            key = model.getKey();
                             viewHolder.setGConcentration(concentration);
                             viewHolder.setGDate(date);
                             viewHolder.setGNotes(notes);
                             viewHolder.setGTime(time);
                             viewHolder.getContext(getContext());
 
-                            bottomSheetRecycler.getReference(reference);
+                            Log.v("Reference", "The firebase reference" + reference);
+
+
                         }
                     };
+
+                    BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                    bottomSheetRecycler.setKey(key);
+                    bottomSheetRecycler.setReference(reference);
                     fragment_history_legend.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
@@ -102,8 +105,8 @@ public class LogFragment extends Fragment {
                 if (id == 1) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                     String uid = user.getUid();
-                    reference = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Hba1c_Readings");
-                    reference.keepSynced(true);
+                    reference1 = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Hba1c_Readings");
+                    reference1.keepSynced(true);
                     FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder>(Hba1c_gluco.class, R.layout.fragment_hba1c_item, HbA1cViewHolder.class, reference) {
                         public static final String TAG = "Fire";
 
@@ -114,15 +117,18 @@ public class LogFragment extends Fragment {
 
                         @Override
                         protected void populateViewHolder(HbA1cViewHolder viewHolder, Hba1c_gluco model, int position) {
+                            String key;
                             Log.v(TAG, "Value" + model.getHba1c_con());
                             Log.v(TAG, "Value of concentration" + model.getHba1c_con());
                             viewHolder.setGConcentration(model.getHba1c_con());
                             viewHolder.setGDate(model.getHba1c_date());
                             viewHolder.setGNotes(model.getHba1c_notes());
                             viewHolder.setGTime(model.getHba1c_time());
+
                         }
                     };
-                    bottomSheetRecycler.getReference(reference);
+                    BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                    bottomSheetRecycler.setReference(reference1);
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
@@ -138,14 +144,19 @@ public class LogFragment extends Fragment {
                         protected void populateViewHolder(PressureViewHolder viewHolder, Pressure_gluco model, int position) {
                             Log.v(TAG, "Value" + model.getPressure_max());
                             Log.v(TAG, "Value of date" + model.getPressure_date());
+                            String key;
                             viewHolder.setGMax(model.getPressure_max());
                             viewHolder.setGMin(model.getPressure_min());
                             viewHolder.setGDate(model.getPressure_date());
                             viewHolder.setGNotes(model.getPressure_notes());
                             viewHolder.setGTime(model.getPressure_time());
+                            key = model.getKey();
+                            BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                            bottomSheetRecycler.setKey(key);
+                            bottomSheetRecycler.setReference(reference);
                         }
                     };
-                    bottomSheetRecycler.getReference(reference);
+
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
 
@@ -167,43 +178,15 @@ public class LogFragment extends Fragment {
             @Override
             public void onClick(View view, final int position) {
                /* Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();*/
-                /*BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
-                bottomSheetRecycler.show(getFragmentManager(),bottomSheetRecycler.getTag());
-                bottomSheetRecycler.getPosition(position);*/
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                        getActivity());
 
-                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int selectedposition = position;
-                        reference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                });
-
-                alertDialog.setNegativeButton("No", null);
-
-                alertDialog.setMessage("Do you want to exit?");
-                alertDialog.setTitle("Gluco");
-                alertDialog.show();
             }
 
             @Override
-            public void onLongClick(View view, int position) {
-
-
+            public void onLongClick(View view, final int position) {
+                BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                bottomSheetRecycler.show(getFragmentManager(), bottomSheetRecycler.getTag());
             }
+
         }));
         recyclerView.setHasFixedSize(true);
         return rootView;

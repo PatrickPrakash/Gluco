@@ -36,7 +36,7 @@ public class Hba1cReadActivity extends AppCompatActivity implements View.OnClick
     private EditText hba1c_add_con, hba1c_add_date, hba1c_add_time, hba1c_add_notes;
     private Spinner hba1c_period;
     private FloatingActionButton floatingActionButton;
-    private String hba1c_newdate, hba1c_con, hba1c_time, hba1c_date, hba1c_notes, hba1c_period_string;
+    private String hba1c_newdate, hba1c_con, hba1c_time, hba1c_date, hba1c_notes, hba1c_period_string, hba1c_key;
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -100,7 +100,9 @@ public class Hba1cReadActivity extends AppCompatActivity implements View.OnClick
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
             String uid = user.getUid();
             Hba1c_gluco hba1c_gluco = new Hba1c_gluco(hba1c_con, hba1c_date, hba1c_time, hba1c_notes, hba1c_period_string);
-            databaseReference.child("User_Readings").child(uid).child("Hba1c_Readings").push().setValue(hba1c_gluco);
+            hba1c_key = databaseReference.push().getKey();
+            hba1c_gluco.setKey(hba1c_key);
+            databaseReference.child("User_Readings").child(uid).child("Hba1c_Readings").child(hba1c_key).setValue(hba1c_gluco);
         } catch (Exception e) {
             Toast.makeText(this, "Error code:1002,Database Connection Failed", Toast.LENGTH_SHORT).show();
         }

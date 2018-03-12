@@ -30,7 +30,7 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
     public static final String TAG = "Blood_gluco";
     TextInputEditText gluco_add_con, gluco_add_date, gluco_add_notes, gluco_add_time;
     FloatingActionButton floatingActionButton;
-    String gluco_con, gluco_date, gluco_notes, gluco_newdate, gluco_period_string, gluco_time;
+    String gluco_con, gluco_date, gluco_notes, gluco_newdate, gluco_period_string, gluco_time, gluco_key;
     Calendar myCalendar = Calendar.getInstance();
     TimePickerDialog mTimePicker;
     Spinner gluco_period;
@@ -86,7 +86,9 @@ public class BloodGlucoActivity extends AppCompatActivity implements View.OnClic
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
             String uid = user.getUid();
             Blood_gluco blood_gluco = new Blood_gluco(gluco_con, gluco_date, gluco_time, gluco_period_string, gluco_notes);
-            mDataref.child("User_Readings").child(uid).child("Blood_Glucose").push().setValue(blood_gluco);
+            gluco_key = mDataref.push().getKey();
+            blood_gluco.setKey(gluco_key);
+            mDataref.child("User_Readings").child(uid).child("Blood_Glucose").child(gluco_key).setValue(blood_gluco);
         } catch (Exception e) {
             Toast.makeText(this, "Error code:1002,Database Connection Failed", Toast.LENGTH_SHORT).show();
         }

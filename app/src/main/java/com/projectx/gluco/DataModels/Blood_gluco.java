@@ -10,6 +10,7 @@ public class Blood_gluco {
     private String time;
     private String period;
     private String notes;
+    private String key;
 
     public Blood_gluco() {
         super();
@@ -61,6 +62,14 @@ public class Blood_gluco {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override

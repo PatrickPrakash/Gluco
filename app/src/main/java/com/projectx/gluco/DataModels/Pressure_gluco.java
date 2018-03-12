@@ -11,7 +11,7 @@ public class Pressure_gluco {
     private String pressure_notes;
     private String pressure_time;
     private String pressure_period;
-
+    private String key;
 
     public Pressure_gluco() {
 
@@ -72,6 +72,14 @@ public class Pressure_gluco {
 
     public void setPressure_period(String pressure_period) {
         this.pressure_period = pressure_period;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override
