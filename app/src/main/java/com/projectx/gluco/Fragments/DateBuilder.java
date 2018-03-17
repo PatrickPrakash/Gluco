@@ -77,7 +77,6 @@ public class DateBuilder {
         Date date;
         float dateFloatVal = -1;
 
-
         if (DATE_TYPE == DATE_DATE_TYPE) {
             dateStr = new SimpleDateFormat("yy-MM-dd").format(this.date);
         } else {

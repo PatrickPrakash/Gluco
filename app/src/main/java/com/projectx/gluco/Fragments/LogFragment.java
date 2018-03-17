@@ -2,7 +2,6 @@ package com.projectx.gluco.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.DataModels.Blood_gluco;
 import com.projectx.gluco.DataModels.Hba1c_gluco;
 import com.projectx.gluco.DataModels.Pressure_gluco;
+import com.projectx.gluco.DataModels.RecycleData;
 import com.projectx.gluco.Listeners.LogListener;
 import com.projectx.gluco.R;
 import com.projectx.gluco.ViewHolders.BloodViewHolder;
@@ -34,6 +34,7 @@ import com.projectx.gluco.ViewHolders.PressureViewHolder;
  * A simple {@link Fragment} subclass.
  */
 public class LogFragment extends Fragment {
+    static int newposition;
     RecyclerView recyclerView;
     DatabaseReference reference;
     DatabaseReference reference1;
@@ -41,8 +42,6 @@ public class LogFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     Spinner history_spinner;
     LinearLayout fragment_history_legend;
-    BottomNavigationView bottomNavigationView;
-    String key;
     public LogFragment() {
 
     }
@@ -52,10 +51,8 @@ public class LogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //Inflate the Android Log fragment
         View rootView = inflater.inflate(R.layout.fragment_log, container, false);
-
         fragment_history_legend = rootView.findViewById(R.id.fragment_history_legend);
         recyclerView = rootView.findViewById(R.id.fragment_history_recycler_view);
-
         Spinner history_spinner = rootView.findViewById(R.id.history_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.med_spinner, R.layout.spinner_layout);
         adapter.setDropDownViewResource(R.layout.spinner_layout);
@@ -63,16 +60,23 @@ public class LogFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
         String uid = user.getUid();
 
+
         history_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (id == 0) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                     String uid = user.getUid();
-                    reference = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
+                    final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Blood_Glucose");
                     reference.keepSynced(true);
-                    FirebaseRecyclerAdapter<Blood_gluco, BloodViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blood_gluco, BloodViewHolder>(Blood_gluco.class, R.layout.fragment_gluco_item, BloodViewHolder.class, reference) {
+                    final FirebaseRecyclerAdapter<Blood_gluco, BloodViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blood_gluco, BloodViewHolder>(Blood_gluco.class, R.layout.fragment_gluco_item, BloodViewHolder.class, reference) {
                         public static final String TAG = "Fire";
+
+                        @Override
+                        public void onBindViewHolder(BloodViewHolder viewHolder, int position) {
+                            super.onBindViewHolder(viewHolder, position);
+
+                        }
 
                         @Override
                         protected void populateViewHolder(BloodViewHolder viewHolder, Blood_gluco model, int position) {
@@ -82,24 +86,35 @@ public class LogFragment extends Fragment {
                             String date = model.getDate();
                             String notes = model.getNotes();
                             String time = model.getTime();
-                            key = model.getKey();
                             viewHolder.setGConcentration(concentration);
                             viewHolder.setGDate(date);
                             viewHolder.setGNotes(notes);
                             viewHolder.setGTime(time);
                             viewHolder.getContext(getContext());
-
-                            Log.v("Reference", "The firebase reference" + reference);
-
-
                         }
                     };
 
-                    BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
-                    bottomSheetRecycler.setKey(key);
-                    bottomSheetRecycler.setReference(reference);
+
                     fragment_history_legend.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
+                    recyclerView.addOnItemTouchListener(new LogListener(getActivity(), recyclerView, new ActivityListener() {
+                        @Override
+                        public void onClick(View view, final int position) {
+
+                        }
+
+                        @Override
+                        public void onLongClick(View view, final int position) {
+                            String key = firebaseRecyclerAdapter.getRef(position).getKey();
+                            DatabaseReference ref = firebaseRecyclerAdapter.getRef(position);
+                            Log.v("DataKey", "key" + key);
+                            RecycleData.setKey(key);
+                            RecycleData.setReference(ref);
+                            BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
+                            bottomSheetRecycler.show(getFragmentManager(), bottomSheetRecycler.getTag());
+                        }
+
+                    }));
                 }
 
                 if (id == 1) {
@@ -107,12 +122,13 @@ public class LogFragment extends Fragment {
                     String uid = user.getUid();
                     reference1 = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Hba1c_Readings");
                     reference1.keepSynced(true);
-                    FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder>(Hba1c_gluco.class, R.layout.fragment_hba1c_item, HbA1cViewHolder.class, reference) {
+                    FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Hba1c_gluco, HbA1cViewHolder>(Hba1c_gluco.class, R.layout.fragment_hba1c_item, HbA1cViewHolder.class, reference1) {
                         public static final String TAG = "Fire";
 
                         @Override
                         public void onBindViewHolder(HbA1cViewHolder viewHolder, int position) {
                             super.onBindViewHolder(viewHolder, position);
+
                         }
 
                         @Override
@@ -127,17 +143,15 @@ public class LogFragment extends Fragment {
 
                         }
                     };
-                    BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
-                    bottomSheetRecycler.setReference(reference1);
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
                 }
                 if (id == 2) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //To get uid
                     String uid = user.getUid();
-                    reference = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Pressure_Readings");
-                    reference.keepSynced(true);
-                    FirebaseRecyclerAdapter<Pressure_gluco, PressureViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Pressure_gluco, PressureViewHolder>(Pressure_gluco.class, R.layout.fragment_pressure_item, PressureViewHolder.class, reference) {
+                    reference2 = FirebaseDatabase.getInstance().getReference().child("User_Readings").child(uid).child("Pressure_Readings");
+                    reference2.keepSynced(true);
+                    FirebaseRecyclerAdapter<Pressure_gluco, PressureViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Pressure_gluco, PressureViewHolder>(Pressure_gluco.class, R.layout.fragment_pressure_item, PressureViewHolder.class, reference2) {
                         public static final String TAG = "Fire";
 
                         @Override
@@ -150,21 +164,14 @@ public class LogFragment extends Fragment {
                             viewHolder.setGDate(model.getPressure_date());
                             viewHolder.setGNotes(model.getPressure_notes());
                             viewHolder.setGTime(model.getPressure_time());
-                            key = model.getKey();
-                            BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
-                            bottomSheetRecycler.setKey(key);
-                            bottomSheetRecycler.setReference(reference);
                         }
                     };
 
+
                     fragment_history_legend.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(firebaseRecyclerAdapter);
-
                 }
-
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -174,20 +181,6 @@ public class LogFragment extends Fragment {
 
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addOnItemTouchListener(new LogListener(getActivity(), recyclerView, new ActivityListener() {
-            @Override
-            public void onClick(View view, final int position) {
-               /* Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();*/
-
-            }
-
-            @Override
-            public void onLongClick(View view, final int position) {
-                BottomSheetRecycler bottomSheetRecycler = new BottomSheetRecycler();
-                bottomSheetRecycler.show(getFragmentManager(), bottomSheetRecycler.getTag());
-            }
-
-        }));
         recyclerView.setHasFixedSize(true);
         return rootView;
     }
@@ -201,7 +194,6 @@ public class LogFragment extends Fragment {
 
     public interface ActivityListener {
         void onClick(View view, int position);
-
         void onLongClick(View view, int position);
     }
 

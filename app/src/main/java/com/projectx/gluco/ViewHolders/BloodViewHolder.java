@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.projectx.gluco.R;
 
@@ -26,14 +25,6 @@ public class BloodViewHolder extends RecyclerView.ViewHolder {
     public BloodViewHolder(LayoutInflater inflater, ViewGroup container) {
         super(inflater.inflate(R.layout.fragment_gluco_item, container, false));
         mCardview = itemView.findViewById(R.id.item_history);
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(context, "Long Click Pressed", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
     }
 
     public void setGConcentration(String concentration) {

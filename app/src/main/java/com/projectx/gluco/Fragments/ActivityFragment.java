@@ -3,7 +3,7 @@ package com.projectx.gluco.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,18 +49,19 @@ public class ActivityFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.activity_recyclerview);
         recyclerView.setNestedScrollingEnabled(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(firebaseRecyclerAdapter);
         recyclerView.addOnItemTouchListener(new OntouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
                /* Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();*/
+
             }
 
             @Override
             public void onLongClick(View view, int position) {
-               /* Toast.makeText(getActivity(), "Item long clicked", Toast.LENGTH_SHORT).show();*/
+
             }
         }));
         return view;

@@ -16,12 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.projectx.gluco.MainActivities.ConsoleActivity;
 import com.projectx.gluco.R;
-import com.projectx.gluco.Userdetails.BasicinfoActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView uSignup,Fpass;
+    private TextView uSignup, Fpass, forgopass;
     private EditText uEmail,uPass;
     private Button uSignin;
     private FirebaseAuth mAuth;
@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         uEmail = findViewById(R.id.uEmail);
         uPass = findViewById(R.id.uPass);
         uEmail = findViewById(R.id.uEmail);
+        forgopass = findViewById(R.id.forgopass);
         mAuth = FirebaseAuth.getInstance();
         mAuthstateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -47,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
         };
         Signin();
         textAction();
+        forgopass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgotpass();
+            }
+        });
+
     }
 
         public void Signin()
@@ -64,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                 {
-                                    startActivity(new Intent(LoginActivity.this, BasicinfoActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, ConsoleActivity.class));
                                     Toast.makeText(LoginActivity.this, "SignIn Successful", Toast.LENGTH_SHORT).show();
                                 } else
                                     {
@@ -79,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-   private void textAction()
+    private void textAction()
     {
         uSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +96,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void forgotpass() {
+        startActivity(new Intent(LoginActivity.this, ForgotPassActivity.class));
     }
 }

@@ -9,6 +9,7 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -106,7 +107,7 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
                 switch (item.getItemId())
                 {
                     case R.id.nav_home :
-                        setFragment(homeFragment);
+                        setFragment(homeFragment, "HOMEFRAGMENT");
                         return true;
 
                     case R.id.nav_log :
@@ -185,17 +186,25 @@ public class ConsoleActivity extends AppCompatActivity implements View.OnClickLi
 
 
     //Set Fragment on Frame layout
-    private void setFragment(Fragment fragment)
-    {
+    private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.ConstraintLayout, fragment);
         fragmentTransaction.commit();
     }
-    private void DefaultFragment(Fragment fragment)
-    {
+
+    private void setFragment(Fragment fragment, String fragmentTag) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.ConstraintLayout, fragment);
+        fragmentTransaction.replace(R.id.ConstraintLayout, fragment, fragmentTag);
         fragmentTransaction.commit();
+    }
+
+
+    private void DefaultFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.ConstraintLayout, fragment, "HOMEFRAGMENT");
+        fragmentTransaction.commit();
+
     }
 
 

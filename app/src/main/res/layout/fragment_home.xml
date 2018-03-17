@@ -36,16 +36,6 @@
 
         </com.github.mikephil.charting.charts.LineChart>
 
-        <Spinner
-            android:id="@+id/date_spinner"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="38dp" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -80,7 +70,6 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/textView16"
             android:paddingRight="20dp"
-            android:text="777"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -124,7 +113,6 @@
             android:layout_height="150dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:text="This is the sample text"
             android:textSize="16sp" />
     </RelativeLayout>
 
