@@ -1,6 +1,7 @@
 package com.projectx.gluco.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.projectx.gluco.DataModels.Activity_gluco;
 import com.projectx.gluco.Listeners.OntouchListener;
+import com.projectx.gluco.MainActivities.CalculatorActivity;
+import com.projectx.gluco.MainActivities.DietActivity;
+import com.projectx.gluco.MainActivities.ExeActivity;
+import com.projectx.gluco.MainActivities.FruitsActivity;
 import com.projectx.gluco.R;
 import com.projectx.gluco.ViewHolders.ActivityViewHolder;
 
@@ -33,11 +38,9 @@ public class ActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_activity, container, false);
-
-
         dataref = FirebaseDatabase.getInstance().getReference().child("Activities");
         dataref.keepSynced(true);
-        FirebaseRecyclerAdapter<Activity_gluco, ActivityViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Activity_gluco, ActivityViewHolder>(Activity_gluco.class, R.layout.fragment_activity_item, ActivityViewHolder.class, dataref) {
+        final FirebaseRecyclerAdapter<Activity_gluco, ActivityViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Activity_gluco, ActivityViewHolder>(Activity_gluco.class, R.layout.fragment_activity_item, ActivityViewHolder.class, dataref) {
             @Override
             protected void populateViewHolder(ActivityViewHolder viewHolder, Activity_gluco model, int position) {
                 String heading = model.getHeading();
@@ -56,7 +59,15 @@ public class ActivityFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                /* Toast.makeText(getActivity(), "Item Clicked", Toast.LENGTH_SHORT).show();*/
-
+                if (position == 0) {
+                    startActivity(new Intent(getActivity(), CalculatorActivity.class));
+                } else if (position == 1) {
+                    startActivity(new Intent(getActivity(), DietActivity.class));
+                } else if (position == 2) {
+                    startActivity(new Intent(getActivity(), ExeActivity.class));
+                } else if (position == 3) {
+                    startActivity(new Intent(getActivity(), FruitsActivity.class));
+                }
             }
 
             @Override

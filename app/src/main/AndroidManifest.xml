@@ -50,7 +50,13 @@
         <activity
             android:name=".Userdetails.TermsActivity"
             android:exported="true" />
-        <activity android:name=".Authentication.ForgotPassActivity"></activity>
+        <activity android:name=".Authentication.ForgotPassActivity" />
+        <activity android:name=".MainActivities.ExeActivity" />
+        <activity
+            android:name=".MainActivities.DietActivity"
+            android:exported="true" />
+        <activity android:name=".MainActivities.FruitsActivity" />
+        <activity android:name=".MainActivities.CalculatorActivity"></activity>
     </application>
 
 </manifest>

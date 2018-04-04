@@ -32,22 +32,6 @@ public class DateBuilder {
      * @param dateFloatVal
      * @return
      */
-    public static Date getDate(float dateFloatVal) throws ParseException {
-        Date date;
-
-        String dateStr = String.valueOf(dateFloatVal).split("\\.")[0];
-        StringBuilder sb = new StringBuilder();
-        sb.append(dateStr.substring(0, 2));
-        sb.append("-");
-        sb.append(dateStr.substring(2, 4));
-        sb.append("-");
-        sb.append(dateStr.substring(4, 6));
-
-        dateStr = sb.toString();
-        date = new SimpleDateFormat("yy-MM-dd").parse(dateStr);
-
-        return date;
-    }
 
     public static String getDate(float dateFloatVal, SimpleDateFormat dateFormat) throws ParseException {
         Date date;

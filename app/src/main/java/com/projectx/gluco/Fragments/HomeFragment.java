@@ -12,9 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -52,10 +54,6 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    public void updateLineChart() {
-        lineChart.invalidate();
     }
 
 
@@ -104,13 +102,31 @@ public class HomeFragment extends Fragment {
 
                     for (GraphData graphData : graphDataObjects) {
                         entries.add(new Entry(graphData.getDateX(), graphData.getConcentrationY()));
+                        lineChart.notifyDataSetChanged();
                     }
-                    LineDataSet dataSet = new LineDataSet(entries, "Dates");
+                    LineDataSet dataSet = new LineDataSet(entries, "Blood Glucose");
                     LineData lineData = new LineData(dataSet);
                     if (!entries.isEmpty()) {
                         lineChart.setData(lineData);
                     }
-                    updateLineChart(); // refresh
+
+                    YAxis yAxis = lineChart.getAxisLeft();
+                    yAxis.disableGridDashedLine();
+                    yAxis.setDrawGridLines(false);
+                    yAxis.setDrawLimitLinesBehindData(true);
+
+
+                    lineChart.setPinchZoom(true);
+                    lineChart.setHardwareAccelerationEnabled(true);
+                    lineChart.setNoDataTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    lineChart.animateY(1000, Easing.EasingOption.EaseOutCubic);
+                    lineChart.fitScreen();
+                    lineChart.setDescription(null);
+                    lineChart.setVisibleXRangeMaximum(20);
+                    lineChart.moveViewToX(lineData.getXMax());
+                    lineChart.getAxisRight().setEnabled(false);
+
+                    lineChart.invalidate(); // refresh
 
 
                 /*XAxis Data formatter*/
@@ -129,6 +145,8 @@ public class HomeFragment extends Fragment {
                         }
                     };
                     XAxis xAxis = lineChart.getXAxis();
+                    xAxis.setDrawGridLines(false);
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                     xAxis.setGranularityEnabled(false);
                     xAxis.setValueFormatter(formatter);
                 }
