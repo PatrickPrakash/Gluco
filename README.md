@@ -17,6 +17,4 @@ Features:
 
 * Export your Logged values to CSV file
 
-![alt text](https://raw.githubusercontent.com/patrickprakash/Gluco/master/app/githubpics/sc1.png)
 
-![alt text](https://raw.githubusercontent.com/patrickprakash/Gluco/master/app/githubpics/sc2.png)
