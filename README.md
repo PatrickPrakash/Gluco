@@ -18,3 +18,4 @@ Features:
 * Export your Logged values to CSV file
 
 
+The Project no longer in Development.Thanks for all the contributors
