@@ -1,9 +1,14 @@
 # Gluco
 Open Source Diabetes Management
 
+# This Project is Deprecated
+It has not been in development for more than 3 months
+
 Gluco is a Open -Source Diabetes Management System.
 
 Features:
+
+* Cloud-Based
 
 * Material Design
 
@@ -15,7 +20,5 @@ Features:
 
 * Get Diet Tips
 
-* Export your Logged values to CSV file
 
 
-The Project no longer in Development.Thanks for all the contributors
